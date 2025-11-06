@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+
+
     // Seuils pour déclencher différentes animations/effets
     const scrollThresholdSVG = 0;
     const scrollThresholdNavbar = 10; // ajuste cette valeur selon ton besoin
