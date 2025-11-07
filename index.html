@@ -1,1043 +1,279 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Chocolat Hub</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="css/style.css" />
-        <link
-            rel="icon"
-            href="images/tablette_chocolat1.ico"
-            type="image/png"
-        />
-    </head>
-    <body>
-        <div
-            id="menu-overlay"
-            class="fixed inset-0 bg-black/50 z-[1009] opacity-0 pointer-events-none transition-opacity duration-500 ease-in-out"
-        ></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolat Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/tablette_chocolat1.ico" type="image/png">
+</head>
+<body>
 
-        <div
-            id="side-menu"
-            class="fixed top-0 right-0 h-full w-full bg-[#4d2c16] shadow-2xl z-[1010] transform translate-x-full transition-transform duration-500 cubic-bezier(0.6, 0, 0.2, 1)"
-        >
-            <div
-                class="p-6 h-full flex flex-col justify-center items-center relative"
-            >
-                <button
-                    id="close-menu-btn"
-                    class="text-[#f7efe6] hover:text-[#f9bf29] transition absolute top-8 right-8 z-20"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-10 w-10"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                        />
-                    </svg>
-                </button>
+<div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[1009] opacity-0 pointer-events-none transition-opacity duration-500 ease-in-out"></div>
 
-                <h3
-                    class="text-6xl font-extrabold text-[#f9bf29] mb-12 uppercase tracking-widest"
-                >
-                    Menu
-                </h3>
-
-                <nav class="space-y-6 text-3xl font-light text-center">
-                    <a
-                        href="#"
-                        class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300"
-                        >Accueil</a
-                    >
-                    <a
-                        href="#recipes-section"
-                        class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300"
-                        >Nos Recettes</a
-                    >
-                    <a
-                        href="#"
-                        class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300"
-                        >Boutique</a
-                    >
-                    <a
-                        href="#"
-                        class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300"
-                        >Histoires</a
-                    >
-                    <a
-                        href="#"
-                        class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300"
-                        >Contact</a
-                    >
-                </nav>
-
-                <div class="mt-12 pt-6">
-                    <button
-                        class="bg-[#f9bf29] text-[#4d2c16] font-semibold py-3 px-8 text-lg rounded-full hover:bg-[#ffcb3b] transition duration-300 shadow-xl"
-                    >
-                        Connexion
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <nav
-            class="fixed top-0 left-0 w-full p-4 z-[1000] bg-transparent"
-            id="navbar"
-        >
-            <div class="flex justify-end items-center px-6 w-full">
-                <div class="flex items-center space-x-3">
-                    <button
-                        id="login-btn"
-                        class="text-[#4d2c16] hover:text-[#f9bf29] transition p-4 rounded-full hover:border-[#f9bf29] bg-white/70 backdrop-blur-sm"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                            />
-                        </svg>
-                    </button>
-
-                    <button
-                        id="menu-burger-btn"
-                        class="text-[#4d2c16] hover:text-[#f9bf29] transition bg-white/70 backdrop-blur-sm p-4 rounded-full"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </nav>
-
-        <!-- NAVBAR FLOTANTE -->
-        <nav
-            id="navbar-img"
-            aria-label="Navigation Principale"
-            class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
-        >
-            <div
-                class="bg-[rgba(255,255,255,0.1)] backdrop-blur-md border border-[rgba(255,255,255,0.2)] rounded-2xl px-6 py-3 shadow-2xl"
-            >
-                <ul class="flex items-center gap-8 text-xs">
-                    <!-- Exemple d'éléments - duplique à volonté -->
-                    <li>
-                        <button
-                            onclick="document.getElementById('home').scrollIntoView({behavior:'smooth', block:'start'})"
-                            class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]"
-                            aria-current="page"
-                        >
-                            <!-- Icône Accueil -->
-                            <svg
-                                class="h-4 w-4"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M3 12L12 5l9 7"
-                                />
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M5 10v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"
-                                />
-                            </svg>
-                            <span>Accueil</span>
-                            <!-- Marqueur actif (optionnel, visible si current) -->
-                            <span
-                                class="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-white"
-                            ></span>
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            onclick="document.getElementById('recipes-section').scrollIntoView({behavior:'smooth', block:'start'})"
-                            class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]"
-                        >
-                            <!-- Icône Recettes -->
-                            <svg
-                                class="h-4 w-4"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4 19.5V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v12.5"
-                                />
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M4 19.5A2.5 2.5 0 0 0 6.5 22H19"
-                                />
-                                <line x1="8" y1="6.5" x2="8" y2="19" />
-                                <line x1="12" y1="10" x2="16" y2="10" />
-                                <line x1="12" y1="14" x2="16" y2="14" />
-                            </svg>
-                            <span>Recettes</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            onclick="document.getElementById('category-section').scrollIntoView({behavior:'smooth', block:'start'})"
-                            class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]"
-                        >
-                            <!-- Icône Catégories -->
-                            <svg
-                                class="h-4 w-4"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                            >
-                                <rect x="3" y="3" width="7" height="7" rx="1" />
-                                <rect
-                                    x="14"
-                                    y="3"
-                                    width="7"
-                                    height="7"
-                                    rx="1"
-                                />
-                                <rect
-                                    x="14"
-                                    y="14"
-                                    width="7"
-                                    height="7"
-                                    rx="1"
-                                />
-                                <rect
-                                    x="3"
-                                    y="14"
-                                    width="7"
-                                    height="7"
-                                    rx="1"
-                                />
-                            </svg>
-                            <span>Catégories</span>
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            onclick="document.getElementById('contact-section').scrollIntoView({behavior:'smooth', block:'start'})"
-                            class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]"
-                        >
-                            <!-- Icône Contact -->
-                            <svg
-                                class="h-4 w-4"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                viewBox="0 0 24 24"
-                            >
-                                <rect
-                                    x="3"
-                                    y="5"
-                                    width="18"
-                                    height="14"
-                                    rx="2"
-                                />
-                                <polyline points="3 7 12 13 21 7" />
-                            </svg>
-                            <span>Contact</span>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <div id="initial-container">
-            <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMax meet">
-                <g transform="translate(500,600)">
-                    <path
-                        id="slice-1"
-                        d="M0,0 L-1800,0 A1800,1800 0 0,1 -1456,-1058 Z"
-                        fill="#FAF3E0"
-                    ></path>
-                    <path
-                        id="slice-2"
-                        d="M0,0 L-1456,-1058 A1800,1800 0 0,1 -556,-1712 Z"
-                        fill="#b47b52"
-                    ></path>
-                    <path
-                        id="slice-3"
-                        d="M0,0 L-556,-1712 A1800,1800 0 0,1 556,-1712 Z"
-                        fill="#f7efe6"
-                    ></path>
-                    <path
-                        id="slice-4"
-                        d="M0,0 L556,-1712 A1800,1800 0 0,1 1456,-1058 Z"
-                        fill="#d4a15a"
-                    ></path>
-                    <path
-                        id="slice-5"
-                        d="M0,0 L1456,-1058 A1800,1800 0 0,1 1800,0 Z"
-                        fill="#2d1b14"
-                    ></path>
-                    <g id="separator-lines">
-                        <line
-                            x1="0"
-                            y1="0"
-                            x2="-1456"
-                            y2="-1058"
-                            stroke="white"
-                            stroke-width="5"
-                        ></line>
-                        <line
-                            x1="0"
-                            y1="0"
-                            x2="-556"
-                            y2="-1712"
-                            stroke="white"
-                            stroke-width="5"
-                        ></line>
-                        <line
-                            x1="0"
-                            y1="0"
-                            x2="556"
-                            y2="-1712"
-                            stroke="white"
-                            stroke-width="5"
-                        ></line>
-                        <line
-                            x1="0"
-                            y1="0"
-                            x2="1456"
-                            y2="-1058"
-                            stroke="white"
-                            stroke-width="5"
-                        ></line>
-                    </g>
-                </g>
-                <image
-                    id="center-image"
-                    href="images/ChocolatHub_title2.png"
-                    x="350"
-                    y="50"
-                    width="300"
-                    height="280"
-                />
-                <image
-                    id="tablette-image"
-                    href="images/tablette_chocolat.png"
-                    x="350"
-                    y="390"
-                    width="300"
-                    height="300"
-                />
-                <image
-                    id="tablette_croc-image"
-                    href="images/tablette_chocolat_croc.png"
-                    x="350"
-                    y="390"
-                    width="300"
-                    height="300"
-                    transform="rotate(180 500 100)"
-                />
-                <image
-                    id="cacao_lait"
-                    href="images/cacao_lait.png"
-                    x="10"
-                    y="250"
-                    width="300"
-                    height="180"
-                    transform="rotate(-38 280 110)"
-                />
-                <image
-                    id="cacao_blanc"
-                    href="images/cacao_blanc.png"
-                    x="-280"
-                    y="120"
-                    width="300"
-                    height="180"
-                    transform="rotate(-65 280 100)"
-                />
-                <image
-                    id="cacao_blond"
-                    href="images/cacao_blond.png"
-                    x="600"
-                    y="-20"
-                    width="300"
-                    height="180"
-                    transform="rotate(38 300 100)"
-                />
-                <image
-                    id="cacao_noir"
-                    href="images/cacao_noir.png"
-                    x="730"
-                    y="-260"
-                    width="300"
-                    height="180"
-                    transform="rotate(65 300 100)"
-                />
+<div id="side-menu" class="fixed top-0 right-0 h-full w-full bg-[#4d2c16] shadow-2xl z-[1010] transform translate-x-full transition-transform duration-500 cubic-bezier(0.6, 0, 0.2, 1)">
+    <div class="p-6 h-full flex flex-col justify-center items-center relative">
+        <button id="close-menu-btn" class="text-[#f7efe6] hover:text-[#f9bf29] transition absolute top-8 right-8 z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
-            <div class="hub-center">
-                <button
-                    class="bg-[#f9bf29] px-6 py-3 rounded-md font-semibold text-[#4d2c16] hover:bg-[#ffcb3b] transition"
-                >
-                    Explorer
+        </button>
+
+        <h3 class="text-6xl font-extrabold text-[#f9bf29] mb-12 uppercase tracking-widest">Menu</h3>
+
+        <nav class="space-y-6 text-3xl font-light text-center">
+            <a href="#" class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300">Accueil</a>
+            <a href="#recipes-section" class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300">Nos Recettes</a>
+            <a href="#" class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300">Boutique</a>
+            <a href="#" class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300">Histoires</a>
+            <a href="#" class="block text-[#f7efe6] hover:text-[#f9bf29] transition duration-300">Contact</a>
+        </nav>
+
+        <div class="mt-12 pt-6">
+            <button class="bg-[#f9bf29] text-[#4d2c16] font-semibold py-3 px-8 text-lg rounded-full hover:bg-[#ffcb3b] transition duration-300 shadow-xl">
+                Connexion
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<nav class="fixed top-0 left-0 w-full p-4 z-[1000] bg-transparent" id="navbar">
+    <div class="flex justify-end items-center px-6 w-full">
+        <div class="flex items-center space-x-3">
+
+            <button id="login-btn" class="text-[#4d2c16] hover:text-[#f9bf29] transition p-4 rounded-full hover:border-[#f9bf29] bg-white/70 backdrop-blur-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+            </button>
+
+            <button id="menu-burger-btn" class="text-[#4d2c16] hover:text-[#f9bf29] transition bg-white/70 backdrop-blur-sm p-4 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- NAVBAR FLOTANTE -->
+<nav id="navbar-img" aria-label="Navigation Principale"
+     class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+    <div class="bg-[rgba(255,255,255,0.1)] backdrop-blur-md border border-[rgba(255,255,255,0.2)] rounded-2xl px-6 py-3 shadow-2xl">
+        <ul class="flex items-center gap-8 text-xs">
+            <!-- Exemple d'éléments - duplique à volonté -->
+            <li>
+                <button onclick="document.getElementById('home').scrollIntoView({behavior:'smooth', block:'start'})"
+                        class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]"
+                        aria-current="page">
+                    <!-- Icône Accueil -->
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12L12 5l9 7" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 10v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8" />
+                    </svg>
+                    <span>Accueil</span>
+                    <!-- Marqueur actif (optionnel, visible si current) -->
+                    <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-white"></span>
                 </button>
+            </li>
+            <li>
+                <button onclick="document.getElementById('recipes-section').scrollIntoView({behavior:'smooth', block:'start'})"
+                        class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]">
+                    <!-- Icône Recettes -->
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v12.5"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 0 0 6.5 22H19"/>
+                        <line x1="8" y1="6.5" x2="8" y2="19"/>
+                        <line x1="12" y1="10" x2="16" y2="10"/>
+                        <line x1="12" y1="14" x2="16" y2="14"/>
+                    </svg>
+                    <span>Recettes</span>
+                </button>
+            </li>
+            <li>
+                <button onclick="document.getElementById('category-section').scrollIntoView({behavior:'smooth', block:'start'})"
+                        class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]">
+                    <!-- Icône Catégories -->
+                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                    </svg>
+                    <span>Catégories</span>
+                </button>
+            </li>
+            <li>
+                <button onclick="document.getElementById('contact-section').scrollIntoView({behavior:'smooth', block:'start'})"
+                        class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors hover:bg-[rgba(255,255,255,0.08)] focus:bg-[rgba(255,255,255,0.08)]">
+                    <!-- Icône Contact -->
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="3" y="5" width="18" height="14" rx="2" />
+                        <polyline points="3 7 12 13 21 7" />
+                    </svg>
+                    <span>Contact</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="initial-container">
+    <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMax meet">
+        <g transform="translate(500,600)">
+            <path id="slice-1" d="M0,0 L-1800,0 A1800,1800 0 0,1 -1456,-1058 Z" fill="#FAF3E0"></path>
+            <path id="slice-2" d="M0,0 L-1456,-1058 A1800,1800 0 0,1 -556,-1712 Z" fill="#b47b52"></path>
+            <path id="slice-3" d="M0,0 L-556,-1712 A1800,1800 0 0,1 556,-1712 Z" fill="#f7efe6"></path>
+            <path id="slice-4" d="M0,0 L556,-1712 A1800,1800 0 0,1 1456,-1058 Z" fill="#d4a15a"></path>
+            <path id="slice-5" d="M0,0 L1456,-1058 A1800,1800 0 0,1 1800,0 Z" fill="#2d1b14"></path>
+            <g id="separator-lines">
+                <line x1="0" y1="0" x2="-1456" y2="-1058" stroke="white" stroke-width="5"></line>
+                <line x1="0" y1="0" x2="-556" y2="-1712" stroke="white" stroke-width="5"></line>
+                <line x1="0" y1="0" x2="556" y2="-1712" stroke="white" stroke-width="5"></line>
+                <line x1="0" y1="0" x2="1456" y2="-1058" stroke="white" stroke-width="5"></line>
+            </g>
+        </g>
+        <image id="center-image" href="images/ChocolatHub_title2_upscale.png" x="350" y="50" width="300" height="280" />
+        <image id="tablette-image" href="images/tablette_chocolat.png" x="350" y="390" width="300" height="300" />
+        <image id="tablette_croc-image" href="images/tablette_chocolat_croc.png" x="350" y="390" width="300" height="300" transform="rotate(180 500 100)" />
+        <image id="cacao_lait" href="images/cacao_lait.png" x="10" y="250" width="300" height="180" transform="rotate(-38 280 110)" />
+        <image id="cacao_blanc" href="images/cacao_blanc.png" x="-280" y="120" width="300" height="180" transform="rotate(-65 280 100)" />
+        <image id="cacao_blond" href="images/cacao_blond.png" x="600" y="-20" width="300" height="180" transform="rotate(38 300 100)" />
+        <image id="cacao_noir" href="images/cacao_noir.png" x="730" y="-260" width="300" height="180" transform="rotate(65 300 100)" />
+    </svg>
+    <div class="hub-center">
+        <button class="bg-[#f9bf29] px-6 py-3 rounded-md font-semibold text-[#4d2c16] hover:bg-[#ffcb3b] transition">Explorer</button>
+    </div>
+</div>
+
+<section id="recipes-section" class="pt-24 pb-24 bg-[#f7efe6] text-[#4d2c16] min-h-screen">
+    <div class="w-full px-20">
+        <!-- Titre + sous-titre -->
+        <h2 class="text-8xl font-bold mb-1 text-[#7a3c18] text-left">Recettes</h2>
+        <h3 class="text-2xl font-light text-[#b47b52] mb-4">Découvrez nos créations chocolatées à réaliser chez vous</h3>
+        <!-- Ligne 1 -->
+        <hr class="border-t-2 border-[#b47b52] w-full mb-4 ml-0">
+        <!-- Filtres -->
+        <div class="col-12 d-flex text-[#3D1F0D] flex-column flex-md-row justify-content-center align-items-center gap-3 mb-4">
+            <a href="?filtre=nouvelles" class="btn btn-primary shadow-sm w-md-auto">Nouvelles recettes</a>
+            <a href="?filtre=tendances" class="btn border-secondary-subtle shadow-sm  w-md-auto">Tendances</a>
+            <a href="?filtre=coups-coeur" class="btn border-secondary-subtle shadow-sm w-md-auto">Coups de coeur</a>
+        </div>
+        <hr class="border-t-2 border-[#b47b52] w-full mb-12 ml-0">
+        <!-- Carrousel -->
+<div class="relative w-full overflow-hidden rounded-none shadow-none mb-12">
+    <div class="flex transition-transform duration-500 ease-in-out" id="carousel">
+        <!-- Exemple de slide (à dupliquer pour chaque dessert) -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/fondantAuChocolat.jpg" alt="Fondant au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Fondant au chocolat</span>
+                </div>
             </div>
         </div>
-
-        <section
-            id="recipes-section"
-            class="pt-24 bg-[#f7efe6] text-[#4d2c16] min-h-screen"
-        >
-            <div class="w-full px-20">
-                <!-- Titre + sous-titre -->
-                <h2 class="text-8xl font-bold mb-1 text-[#7a3c18] text-left">
-                    Recettes
-                </h2>
-                <h3 class="text-2xl font-light text-[#b47b52] mb-4">
-                    Découvrez nos créations chocolatées à réaliser chez vous
-                </h3>
-                <!-- Ligne 1 -->
-                <hr class="border-t-2 border-[#b47b52] w-full mb-4 ml-0" />
-                <!-- Filtres -->
-                <div
-                    class="col-12 d-flex text-[#3D1F0D] flex-column flex-md-row justify-content-center align-items-center gap-3 mb-4"
-                >
-                    <a
-                        href="?filtre=nouvelles"
-                        class="btn btn-primary shadow-sm w-md-auto"
-                        >Nouvelles recettes</a
-                    >
-                    <a
-                        href="?filtre=tendances"
-                        class="btn border-secondary-subtle shadow-sm w-md-auto"
-                        >Tendances</a
-                    >
-                    <a
-                        href="?filtre=coups-coeur"
-                        class="btn border-secondary-subtle shadow-sm w-md-auto"
-                        >Coups de coeur</a
-                    >
-                </div>
-                <hr class="border-t-2 border-[#b47b52] w-full mb-12 ml-0" />
-
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    <!-- Card 1 -->
-                    <div class="relative group">
-                        <a href="#" class="absolute inset-0 z-10"
-                            ><span class="sr-only">Voir la recette</span></a
-                        >
-                        <div class="relative w-full h-full">
-                            <!-- SVG Background -->
-                            <div class="absolute inset-0">
-                                <svg
-                                    class="w-full h-full"
-                                    viewBox="0 0 433 671"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <rect
-                                        y="0.108398"
-                                        width="433"
-                                        height="670"
-                                        rx="20"
-                                        fill="#FBF8F6"
-                                    ></rect>
-                                    <line
-                                        x1="31.5"
-                                        y1="108.624"
-                                        x2="401.5"
-                                        y2="108.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="156.624"
-                                        x2="401.5"
-                                        y2="156.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="204.624"
-                                        x2="401.5"
-                                        y2="204.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="252.624"
-                                        x2="401.5"
-                                        y2="252.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="300.624"
-                                        x2="401.5"
-                                        y2="300.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="348.624"
-                                        x2="401.5"
-                                        y2="348.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="396.624"
-                                        x2="401.5"
-                                        y2="396.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="444.624"
-                                        x2="401.5"
-                                        y2="444.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="492.624"
-                                        x2="401.5"
-                                        y2="492.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="540.624"
-                                        x2="401.5"
-                                        y2="540.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="588.624"
-                                        x2="401.5"
-                                        y2="588.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <circle
-                                        cx="36.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                    <circle
-                                        cx="76.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                    <circle
-                                        cx="116.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                </svg>
-                            </div>
-                            <!-- Content -->
-                            <div class="relative p-8">
-                                <div class="relative h-80">
-                                    <div
-                                        class="absolute inset-0 bg-cover bg-center rounded-lg"
-                                        style="
-                                            background-image: url(&quot;https://placehold.co/400x400/d4a15a/2d1b14?text=Recette&quot;);
-                                        "
-                                    ></div>
-                                    <div class="absolute top-2 right-2">
-                                        <img
-                                            src="https://placehold.co/32x32/f9bf29/4d2c16?text=C"
-                                            alt="pays"
-                                            class="w-8 h-8 rounded-full"
-                                        />
-                                    </div>
-                                    <div class="absolute bottom-0 left-0">
-                                        <svg
-                                            width="39"
-                                            height="87"
-                                            viewBox="0 0 39 87"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M36.7782 24.253C36.6021 21.5627 36.8276 13.9327 34.0753 9.47798C31.3272 5.03 25.6444 2.74115 19.8432 2.38622C16.3213 2.17073 6.30832 4.08828 4.06876 12.5933C2.19428 19.7118 2.72599 56.3868 3.64373 74.906C3.91109 80.2904 8.86536 84.1409 14.2124 84.1501C20.8963 84.1616 24.5204 80.137 25.2931 76.0609C25.7686 73.5525 25.4099 23.6587 25.2446 21.4832C24.9981 18.2392 23.54 15.1649 19.7003 15.0745C17.2862 15.0176 14.2784 17.1853 14.5325 22.3137C14.7199 26.0962 14.6961 53.5658 15.2153 68.0777"
-                                                stroke="#2d1b14"
-                                                stroke-width="3.7887"
-                                                stroke-linecap="round"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <h3
-                                    class="mt-6 text-2xl font-bold text-[#4d2c16]"
-                                >
-                                    Truffes au Chocolat
-                                </h3>
-                                <div class="flex items-center mt-2">
-                                    <img
-                                        src="https://placehold.co/48x48/b47b52/f7efe6?text=Chef"
-                                        alt="chef"
-                                        class="w-8 h-8 rounded-full"
-                                    />
-                                    <span
-                                        class="ml-2 text-sm font-medium text-[#4d2c16]"
-                                        >par Chef Gusto</span
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="relative group">
-                        <a href="#" class="absolute inset-0 z-10"
-                            ><span class="sr-only">Voir la recette</span></a
-                        >
-                        <div class="relative w-full h-full">
-                            <!-- SVG Background -->
-                            <div class="absolute inset-0">
-                                <svg
-                                    class="w-full h-full"
-                                    viewBox="0 0 433 671"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <rect
-                                        y="0.108398"
-                                        width="433"
-                                        height="670"
-                                        rx="20"
-                                        fill="#FBF8F6"
-                                    ></rect>
-                                    <line
-                                        x1="31.5"
-                                        y1="108.624"
-                                        x2="401.5"
-                                        y2="108.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="156.624"
-                                        x2="401.5"
-                                        y2="156.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="204.624"
-                                        x2="401.5"
-                                        y2="204.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="252.624"
-                                        x2="401.5"
-                                        y2="252.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="300.624"
-                                        x2="401.5"
-                                        y2="300.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="348.624"
-                                        x2="401.5"
-                                        y2="348.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="396.624"
-                                        x2="401.5"
-                                        y2="396.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="444.624"
-                                        x2="401.5"
-                                        y2="444.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="492.624"
-                                        x2="401.5"
-                                        y2="492.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="540.624"
-                                        x2="401.5"
-                                        y2="540.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="588.624"
-                                        x2="401.5"
-                                        y2="588.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <circle
-                                        cx="36.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                    <circle
-                                        cx="76.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                    <circle
-                                        cx="116.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                </svg>
-                            </div>
-                            <!-- Content -->
-                            <div class="relative p-8">
-                                <div class="relative h-80">
-                                    <div
-                                        class="absolute inset-0 bg-cover bg-center rounded-lg"
-                                        style="
-                                            background-image: url(&quot;https://placehold.co/400x400/b47b52/f7efe6?text=Recette&quot;);
-                                        "
-                                    ></div>
-                                    <div class="absolute top-2 right-2">
-                                        <img
-                                            src="https://placehold.co/32x32/f9bf29/4d2c16?text=B"
-                                            alt="pays"
-                                            class="w-8 h-8 rounded-full"
-                                        />
-                                    </div>
-                                    <div class="absolute bottom-0 left-0">
-                                        <svg
-                                            width="39"
-                                            height="87"
-                                            viewBox="0 0 39 87"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M36.7782 24.253C36.6021 21.5627 36.8276 13.9327 34.0753 9.47798C31.3272 5.03 25.6444 2.74115 19.8432 2.38622C16.3213 2.17073 6.30832 4.08828 4.06876 12.5933C2.19428 19.7118 2.72599 56.3868 3.64373 74.906C3.91109 80.2904 8.86536 84.1409 14.2124 84.1501C20.8963 84.1616 24.5204 80.137 25.2931 76.0609C25.7686 73.5525 25.4099 23.6587 25.2446 21.4832C24.9981 18.2392 23.54 15.1649 19.7003 15.0745C17.2862 15.0176 14.2784 17.1853 14.5325 22.3137C14.7199 26.0962 14.6961 53.5658 15.2153 68.0777"
-                                                stroke="#2d1b14"
-                                                stroke-width="3.7887"
-                                                stroke-linecap="round"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <h3
-                                    class="mt-6 text-2xl font-bold text-[#4d2c16]"
-                                >
-                                    Cookies "Blond"
-                                </h3>
-                                <div class="flex items-center mt-2">
-                                    <img
-                                        src="https://placehold.co/48x48/b47b52/f7efe6?text=Chef"
-                                        alt="chef"
-                                        class="w-8 h-8 rounded-full"
-                                    />
-                                    <span
-                                        class="ml-2 text-sm font-medium text-[#4d2c16]"
-                                        >par Chef Pâtissier</span
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="relative group">
-                        <a href="#" class="absolute inset-0 z-10"
-                            ><span class="sr-only">Voir la recette</span></a
-                        >
-                        <div class="relative w-full h-full">
-                            <!-- SVG Background -->
-                            <div class="absolute inset-0">
-                                <svg
-                                    class="w-full h-full"
-                                    viewBox="0 0 433 671"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <rect
-                                        y="0.108398"
-                                        width="433"
-                                        height="670"
-                                        rx="20"
-                                        fill="#FBF8F6"
-                                    ></rect>
-                                    <line
-                                        x1="31.5"
-                                        y1="108.624"
-                                        x2="401.5"
-                                        y2="108.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="156.624"
-                                        x2="401.5"
-                                        y2="156.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="204.624"
-                                        x2="401.5"
-                                        y2="204.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="252.624"
-                                        x2="401.5"
-                                        y2="252.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="300.624"
-                                        x2="401.5"
-                                        y2="300.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="348.624"
-                                        x2="401.5"
-                                        y2="348.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="396.624"
-                                        x2="401.5"
-                                        y2="396.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="444.624"
-                                        x2="401.5"
-                                        y2="444.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="492.624"
-                                        x2="401.5"
-                                        y2="492.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="540.624"
-                                        x2="401.5"
-                                        y2="540.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <line
-                                        x1="31.5"
-                                        y1="588.624"
-                                        x2="401.5"
-                                        y2="588.624"
-                                        stroke="#d4a15a"
-                                    ></line>
-                                    <circle
-                                        cx="36.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                    <circle
-                                        cx="76.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                    <circle
-                                        cx="116.5"
-                                        cy="37.124"
-                                        r="15"
-                                        fill="#f9bf29"
-                                    ></circle>
-                                </svg>
-                            </div>
-                            <!-- Content -->
-                            <div class="relative p-8">
-                                <div class="relative h-80">
-                                    <div
-                                        class="absolute inset-0 bg-cover bg-center rounded-lg"
-                                        style="
-                                            background-image: url(&quot;https://placehold.co/400x400/4d2c16/f7efe6?text=Recette&quot;);
-                                        "
-                                    ></div>
-                                    <div class="absolute top-2 right-2">
-                                        <img
-                                            src="https://placehold.co/32x32/f9bf29/4d2c16?text=F"
-                                            alt="pays"
-                                            class="w-8 h-8 rounded-full"
-                                        />
-                                    </div>
-                                    <div class="absolute bottom-0 left-0">
-                                        <svg
-                                            width="39"
-                                            height="87"
-                                            viewBox="0 0 39 87"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M36.7782 24.253C36.6021 21.5627 36.8276 13.9327 34.0753 9.47798C31.3272 5.03 25.6444 2.74115 19.8432 2.38622C16.3213 2.17073 6.30832 4.08828 4.06876 12.5933C2.19428 19.7118 2.72599 56.3868 3.64373 74.906C3.91109 80.2904 8.86536 84.1409 14.2124 84.1501C20.8963 84.1616 24.5204 80.137 25.2931 76.0609C25.7686 73.5525 25.4099 23.6587 25.2446 21.4832C24.9981 18.2392 23.54 15.1649 19.7003 15.0745C17.2862 15.0176 14.2784 17.1853 14.5325 22.3137C14.7199 26.0962 14.6961 53.5658 15.2153 68.0777"
-                                                stroke="#2d1b14"
-                                                stroke-width="3.7887"
-                                                stroke-linecap="round"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <h3
-                                    class="mt-6 text-2xl font-bold text-[#4d2c16]"
-                                >
-                                    Mousse au Chocolat
-                                </h3>
-                                <div class="flex items-center mt-2">
-                                    <img
-                                        src="https://placehold.co/48x48/b47b52/f7efe6?text=Chef"
-                                        alt="chef"
-                                        class="w-8 h-8 rounded-full"
-                                    />
-                                    <span
-                                        class="ml-2 text-sm font-medium text-[#4d2c16]"
-                                        >par Le Chocolatier</span
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Slide 2 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/mousseAuChocolat.jpg" alt="Mouse au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Mouse au chocolat</span>
                 </div>
             </div>
-        </section>
-
-        <!-- TESTIMONIALS SECTION (Sola) -->
-        <section
-            class="bg-[#f7efe6] text-[#4d2c16] w-screen min-h-screen relative z-5 px-5 md:px-20"
-            id="testimonials-section"
-        >
-            <div class="py-10 text-center ">
-            <h1 class="text-5xl md:text-8xl font-medium text-[#7a3c18] ">Ils ont fondu de plaisir</h1>
-            <p class="text-xl py-10">De vraies personnes, de vraies cuillères, et beaucoup de chocolat. <br class="hidden md:block">
-                Découvrez ce que nos gourmands en pensent.</p>
+        </div>
+        <!-- Slide 3 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/cookiesAuxPepitesDeChocolat.jpg" alt="Cookies aux pépites de chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Cookies aux pépites de chocolat</span>
+                </div>
             </div>
-            <!-- Cards -->
-            <section class="grid md:grid-cols-3 gap-10 py-10 min-w-screen [&_svg]:mb-5 ">
-                <!-- First Testimonial -->
-                <div class="bg-[#9C89B8] [&_p]:text-[#330036] p-6 rounded-md">
-                    <div>
-                        <svg width="50" height="50" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="108" height="108" rx="8.60558" fill="#330036"/>
-                        <path d="M99.0176 61.3962C99.5621 65.9332 99.1991 69.3813 97.9287 71.7406C96.6584 74.0999 95.025 76.7313 93.0287 79.635C91.2139 80.1795 90.2158 80.7239 90.0343 81.2684C89.8528 81.8128 89.4899 82.1758 88.9454 82.3572C87.3121 83.4461 85.4065 84.2628 83.2288 84.8072C81.2325 85.1702 79.0547 85.2609 76.6954 85.0795C74.5177 84.898 72.4306 84.3535 70.4343 83.4461C68.438 82.5387 67.0769 81.3591 66.351 79.9073C65.4436 80.0887 64.8084 80.0887 64.4455 79.9073C64.0825 79.5443 63.6288 79.2721 63.0844 79.0906C63.0844 77.2758 62.1769 76.3684 60.3621 76.3684C60.5436 74.5536 60.2714 73.4647 59.5455 73.1017C59.001 72.7387 58.5473 72.285 58.1844 71.7406C58.7288 71.0147 58.8195 70.3795 58.4566 69.835C58.0936 69.1091 58.0936 68.2925 58.4566 67.3851C58.0936 66.6591 57.6399 66.2054 57.0955 66.0239C56.7325 65.8425 56.3696 65.5702 56.0066 65.2073C55.4621 63.9369 55.6436 62.9388 56.551 62.2128C57.4584 61.4869 57.8214 60.398 57.6399 58.9462C57.277 58.5832 56.6418 58.311 55.7344 58.1295C55.0084 57.948 54.3733 57.6758 53.8288 57.3128C54.1918 56.7684 54.101 56.224 53.5566 55.6795C53.1936 55.1351 52.8307 54.6814 52.4677 54.3184C52.8307 53.048 53.1936 52.2314 53.5566 51.8684C53.9196 51.5055 54.101 51.0518 54.101 50.5073C57.9121 46.1518 60.9973 42.3407 63.3566 39.074C65.8973 35.6259 68.7103 32.3592 71.7954 29.274C73.6103 28.1851 75.2436 27.4592 76.6954 27.0962C78.3288 26.7333 79.5991 26.0074 80.5065 24.9185C82.8658 24.737 85.3158 24.2833 87.8565 23.5574C90.5787 22.65 92.938 23.1037 94.9343 24.9185C94.9343 25.8259 94.2084 26.5518 92.7565 27.0962C91.3047 27.4592 90.3065 27.187 89.7621 26.2796C89.0362 27.5499 88.3102 28.2759 87.5843 28.4573C87.0399 28.6388 86.6769 29.0018 86.4954 29.5462C80.688 30.8166 76.3325 33.811 73.4288 38.5296C70.5251 43.2481 70.0714 48.6018 72.0677 54.5906C73.5195 55.1351 74.7899 55.0443 75.8788 54.3184C77.1491 53.411 78.3288 53.048 79.4177 53.2295C81.7769 53.774 83.4102 53.8647 84.3176 53.5017C85.2251 53.1388 85.8602 53.411 86.2232 54.3184C87.8565 53.9554 89.1269 54.1369 90.0343 54.8629C90.9417 55.5888 92.0306 56.1332 93.301 56.4962C95.2973 57.7666 96.4769 58.8554 96.8398 59.7628C97.3843 60.4888 98.1102 61.0332 99.0176 61.3962ZM53.8288 67.3851C54.1918 68.2925 54.1918 69.4721 53.8288 70.9239C53.4659 72.3758 52.5584 73.2832 51.1066 73.6462C50.3807 76.0054 49.7455 78.0924 49.201 79.9073C48.6566 81.5406 47.9307 83.1739 47.0233 84.8072C45.5714 85.1702 44.3011 85.7146 43.2122 86.4406C42.3048 87.1665 41.3066 87.7109 40.2177 88.0739C37.1326 88.9813 34.2289 88.6183 31.5066 86.985C28.7844 85.3517 26.4252 83.5369 24.4289 81.5406C21.3437 78.4554 18.5307 75.1887 15.99 71.7406C13.4493 68.111 11.6345 64.4814 10.5456 60.8517C10.3641 60.3073 10.3641 59.8536 10.5456 59.4906C10.727 59.1277 10.8178 58.5832 10.8178 57.8573C9.7289 56.9499 9.18446 56.1332 9.18446 55.4073C9.18446 54.4999 9.00298 53.774 8.64001 53.2295C9.91038 51.7777 10.9993 50.1443 11.9067 48.3295C12.8141 46.5147 13.7215 44.6999 14.6289 42.8851C15.5363 41.0703 16.5344 39.3462 17.6233 37.7129C18.7122 36.0796 20.0733 34.7184 21.7067 33.6296C22.0696 32.1777 22.6141 31.1796 23.34 30.6351C24.0659 29.9092 24.7011 29.0925 25.2455 28.1851C27.2418 26.9148 29.0566 25.4629 30.69 23.8296C32.3233 22.1962 34.4103 20.9259 36.9511 20.0185C38.4029 19.837 39.9455 19.6555 41.5788 19.474C43.3937 19.2925 44.7548 19.837 45.6622 21.1074C45.6622 22.0148 45.4807 22.8314 45.1177 23.5574C44.7548 24.1018 44.3918 24.737 44.0288 25.4629C41.4881 25.8259 38.9474 26.4611 36.4066 27.3685C33.8659 28.0944 32.1418 29.5462 31.2344 31.724C30.5085 31.5425 30.0548 31.724 29.8733 32.2685C29.6918 32.8129 29.3289 33.2666 28.7844 33.6296C28.24 35.0814 27.7863 36.624 27.4233 38.2573C27.0603 39.8907 26.4252 41.2518 25.5178 42.3407C25.6992 43.7925 25.6992 45.2444 25.5178 46.6962C25.5178 47.9666 25.1548 49.1462 24.4289 50.2351C25.1548 50.4166 25.427 50.8703 25.2455 51.5962C25.0641 52.1406 24.8826 52.6851 24.7011 53.2295C24.8826 54.1369 25.2455 54.8629 25.79 55.4073C26.5159 55.7703 27.0603 56.3147 27.4233 57.0406C28.8752 55.5888 30.4178 54.7721 32.0511 54.5906C33.8659 54.4092 35.59 54.1369 37.2233 53.774C39.0381 54.6814 41.3974 55.861 44.3011 57.3128C47.3862 58.5832 49.4733 59.9443 50.5622 61.3962C51.2881 63.211 51.9233 64.4814 52.4677 65.2073C53.1936 65.7517 53.6473 66.4776 53.8288 67.3851ZM65.8066 52.1406C64.7177 50.8703 64.0825 50.4166 63.901 50.7795C63.7195 51.1425 63.2658 51.324 62.5399 51.324C63.6288 52.7758 64.3547 53.411 64.7177 53.2295C65.0806 52.8666 65.4436 52.5036 65.8066 52.1406ZM85.6788 59.2184C83.6825 58.311 82.0491 58.4925 80.7788 59.7628C79.6899 60.8517 78.1473 61.3962 76.151 61.3962C74.6991 62.4851 73.1566 63.4832 71.5232 64.3906C69.8899 65.298 68.0751 66.2054 66.0788 67.1128C66.8047 68.5647 67.2584 69.1999 67.4399 69.0184C67.8029 68.8369 68.2566 68.8369 68.801 69.0184C69.3455 67.5665 70.3436 66.5684 71.7954 66.0239C73.2473 65.4795 74.9714 65.1165 76.9677 64.9351C77.3306 63.4832 78.601 62.5758 80.7788 62.2128C83.138 61.6684 84.7713 60.6703 85.6788 59.2184ZM93.5732 62.7573C91.7584 62.2128 90.7602 62.1221 90.5787 62.4851C90.3973 62.6665 90.125 62.848 89.7621 63.0295C87.9473 63.5739 86.4954 64.2999 85.4065 65.2073C84.4991 66.1147 83.5917 66.7499 82.6843 67.1128C82.5028 67.8388 81.7769 68.4739 80.5065 69.0184C79.2362 69.3813 77.8751 69.6536 76.4232 69.835C78.238 71.2869 79.7806 71.4684 81.051 70.3795C82.5028 69.2906 83.7732 68.7462 84.8621 68.7462C84.4991 69.4721 84.0454 70.0165 83.501 70.3795C82.9565 70.561 82.5028 70.9239 82.1399 71.4684C80.8695 70.9239 79.9621 71.1962 79.4177 72.285C78.8732 73.1925 77.8751 73.6462 76.4232 73.6462C74.2454 72.5573 72.9751 72.648 72.6121 73.9184C72.9751 74.2813 73.338 74.1906 73.701 73.6462C74.2454 73.1017 74.8806 72.9202 75.6066 73.1017C74.8806 74.1906 74.2454 75.098 73.701 75.8239C73.338 76.5499 72.7029 77.0036 71.7954 77.185C72.7029 79.3628 74.1547 80.4517 76.151 80.4517C78.1473 80.4517 80.4158 80.6332 82.9565 80.9961C84.2269 79.9073 85.6788 78.8184 87.3121 77.7295C89.1269 76.6406 90.5787 75.3702 91.6676 73.9184C92.938 72.4665 93.8454 70.8332 94.3898 69.0184C94.9343 67.2036 94.6621 65.1165 93.5732 62.7573ZM67.7121 59.7628C66.0788 58.311 64.8992 57.948 64.1732 58.674C63.6288 59.2184 62.9029 59.6721 61.9955 60.0351C63.8103 61.124 64.9899 61.4869 65.5343 61.124C66.0788 60.5795 66.8047 60.1258 67.7121 59.7628ZM81.3232 64.6628C80.5973 64.4814 79.9621 64.6628 79.4177 65.2073C79.0547 65.5702 78.4195 65.5702 77.5121 65.2073C76.2417 67.2036 74.3362 68.4739 71.7954 69.0184C69.4362 69.5628 67.4399 70.561 65.8066 72.0128C68.8917 72.7387 71.4325 72.1943 73.4288 70.3795C75.4251 68.5647 77.6936 67.4758 80.2343 67.1128L81.3232 64.6628ZM69.3455 61.9406C67.7121 61.5777 66.2603 61.9406 64.9899 63.0295C63.901 64.1184 63.3566 65.1165 63.3566 66.0239C64.4455 65.661 65.4436 65.1165 66.351 64.3906C67.4399 63.6647 68.438 62.848 69.3455 61.9406ZM19.8011 45.0629C19.0752 45.0629 18.3493 45.4258 17.6233 46.1518C17.0789 46.8777 16.6252 47.6036 16.2622 48.3295C16.0807 49.0555 16.0807 49.7814 16.2622 50.5073C16.6252 51.2332 17.4418 51.5962 18.7122 51.5962C19.0752 50.5073 19.3474 49.5092 19.5289 48.6018C19.7104 47.6943 19.8011 46.5147 19.8011 45.0629ZM49.201 71.1962C49.3825 69.7443 49.1103 68.5647 48.3844 67.6573C47.8399 66.5684 47.3862 65.5702 47.0233 64.6628C45.027 63.9369 43.3937 63.0295 42.1233 61.9406C41.0344 60.6703 39.764 59.5814 38.3122 58.674C36.6788 58.8554 35.4085 59.0369 34.5011 59.2184C33.5937 59.2184 32.9585 59.4906 32.5955 60.0351C33.5029 60.2165 34.2289 60.2165 34.7733 60.0351C35.3177 59.6721 35.8622 59.3999 36.4066 59.2184C36.7696 61.7591 36.0437 63.4832 34.2289 64.3906C32.414 65.1165 31.0529 66.3869 30.1455 68.2017C32.3233 67.8388 34.1381 67.2036 35.59 66.2962C37.0418 65.2073 38.9474 64.8443 41.3066 65.2073C42.214 66.2962 42.4862 67.3851 42.1233 68.4739C41.9418 69.5628 41.4881 70.561 40.7622 71.4684C40.0362 72.1943 39.2196 72.8295 38.3122 73.3739C37.4048 73.9184 36.6788 74.3721 36.1344 74.735C35.9529 76.1869 35.6807 77.185 35.3177 77.7295C34.9548 78.2739 34.5011 78.8184 33.9566 79.3628C34.5011 81.5406 34.7733 82.811 34.7733 83.1739C35.6807 83.1739 36.4974 83.2647 37.2233 83.4461C38.1307 83.6276 39.1288 83.5369 40.2177 83.1739C40.9437 82.9924 41.8511 82.3572 42.9399 81.2684C44.0288 80.1795 45.027 78.9998 45.9344 77.7295C46.8418 76.2776 47.5677 75.0073 48.1122 73.9184C48.8381 72.648 49.201 71.7406 49.201 71.1962ZM19.2567 53.2295C18.3493 53.048 17.6233 53.1388 17.0789 53.5017C16.7159 53.8647 16.2622 54.1369 15.7178 54.3184C15.8993 55.2258 15.7178 55.9517 15.1733 56.4962C14.8104 57.0406 14.8104 57.7666 15.1733 58.674C16.6252 57.2221 17.9863 55.4073 19.2567 53.2295ZM40.2177 69.0184C38.4029 67.9295 37.0418 67.748 36.1344 68.4739C35.227 69.0184 34.1381 69.4721 32.8677 69.835C30.69 70.7425 29.1474 71.5591 28.24 72.285C27.5141 73.011 26.2437 73.2832 24.4289 73.1017C24.9733 74.3721 25.6992 75.461 26.6066 76.3684C27.5141 77.0943 28.1492 78.1832 28.5122 79.635C31.4159 77.8202 33.5937 76.0054 35.0455 74.1906C36.4974 72.1943 38.2214 70.4702 40.2177 69.0184ZM21.7067 60.0351C20.4363 60.0351 19.6196 60.3073 19.2567 60.8517C18.8937 61.3962 18.2585 61.8499 17.3511 62.2128C18.6215 63.4832 19.5289 63.6647 20.0733 62.7573C20.7993 61.8499 21.3437 60.9425 21.7067 60.0351ZM27.4233 65.4795C26.5159 65.661 25.5178 66.0239 24.4289 66.5684C23.34 67.1128 22.4326 67.748 21.7067 68.4739C21.1622 69.0184 20.7993 69.6536 20.6178 70.3795C20.6178 71.1054 21.3437 71.8313 22.7955 72.5573C22.977 70.9239 23.7029 69.7443 24.9733 69.0184C26.4252 68.111 27.2418 66.9314 27.4233 65.4795ZM92.4843 67.1128C92.4843 68.2017 92.1213 68.9276 91.3954 69.2906C90.851 69.6536 90.3973 70.2888 90.0343 71.1962C87.8565 72.1036 86.7676 72.1943 86.7676 71.4684C87.8565 69.835 88.7639 68.7462 89.4899 68.2017C90.3973 67.6573 90.9417 66.8406 91.1232 65.7517L92.4843 67.1128ZM88.6732 68.4739C87.0399 69.0184 86.0417 69.1091 85.6788 68.7462C86.7676 68.2017 87.5843 67.9295 88.1287 67.9295C88.6732 67.748 88.8547 67.2036 88.6732 66.2962V68.4739ZM86.4954 72.8295C86.8584 73.7369 86.5862 74.5536 85.6788 75.2795C84.9528 75.8239 84.4084 76.4591 84.0454 77.185C84.5899 75.9147 84.8621 75.0073 84.8621 74.4628C85.0436 73.9184 84.9528 73.4647 84.5899 73.1017L86.4954 72.8295Z" fill="#9C89B8"/>
-                        </svg>
-
-                    <p>
-                        Je ne pensais pas qu’une mousse pouvait être aussi
-                        légère et onctueuse ! La recette est d’une simplicité
-                        désarmante — trois ingrédients, dix minutes, et un goût
-                        digne d’un restaurant étoilé. C’est devenu mon dessert
-                        du dimanche.
-                    </p>
-                    </div>
-                    <div class="py-8 font-bold text-sm">
-                        <p>— Camille Dupont</p>
-                        <p>Graphiste freelance</p>
-                    </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/truffesAuChocolat.jpg" alt="Truffes au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Truffes au chocolat</span>
                 </div>
-
-                <!-- Second Testimonial -->
-                <div class="bg-[#4464AD] [&_p]:text-[#19233B] p-6 rounded-md">
-                    <div>
-                        <svg width="50" height="50" viewBox="0 0 251 251" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="251" height="251" rx="20" fill="#19233B"/>
-                        <path d="M230.124 142.689C231.39 153.234 230.546 161.247 227.594 166.73C224.641 172.214 220.845 178.329 216.206 185.078C211.988 186.343 209.668 187.608 209.246 188.874C208.825 190.139 207.981 190.983 206.716 191.404C202.92 193.935 198.491 195.833 193.43 197.098C188.79 197.942 183.729 198.153 178.246 197.731C173.184 197.309 168.334 196.044 163.695 193.935C159.055 191.826 155.892 189.085 154.205 185.71C152.096 186.132 150.619 186.132 149.776 185.71C148.932 184.867 147.878 184.234 146.613 183.812C146.613 179.595 144.504 177.486 140.286 177.486C140.708 173.268 140.075 170.737 138.388 169.894C137.123 169.05 136.068 167.996 135.225 166.73C136.49 165.043 136.701 163.567 135.857 162.302C135.014 160.615 135.014 158.717 135.857 156.608C135.014 154.921 133.959 153.866 132.694 153.445C131.85 153.023 131.007 152.39 130.163 151.547C128.898 148.594 129.32 146.274 131.429 144.587C133.538 142.9 134.381 140.369 133.959 136.995C133.116 136.152 131.64 135.519 129.531 135.097C127.844 134.676 126.367 134.043 125.102 133.199C125.946 131.934 125.735 130.669 124.469 129.403C123.626 128.138 122.782 127.084 121.939 126.24C122.782 123.288 123.626 121.39 124.469 120.546C125.313 119.702 125.735 118.648 125.735 117.383C134.592 107.26 141.762 98.4028 147.245 90.8108C153.15 82.7971 159.688 75.2052 166.858 68.035C171.076 65.5043 174.872 63.8172 178.246 62.9737C182.042 62.1301 184.994 60.443 187.103 57.9124C192.586 57.4906 198.28 56.4361 204.185 54.749C210.512 52.6402 215.995 53.6946 220.634 57.9124C220.634 60.0212 218.947 61.7083 215.573 62.9737C212.199 63.8172 209.879 63.1845 208.614 61.0757C206.927 64.0281 205.239 65.7152 203.552 66.137C202.287 66.5588 201.443 67.4023 201.022 68.6676C187.525 71.6201 177.402 78.5794 170.654 89.5455C163.905 100.512 162.851 112.954 167.491 126.873C170.865 128.138 173.817 127.927 176.348 126.24C179.3 124.131 182.042 123.288 184.572 123.709C190.056 124.975 193.851 125.186 195.96 124.342C198.069 123.498 199.545 124.131 200.389 126.24C204.185 125.396 207.137 125.818 209.246 127.505C211.355 129.192 213.886 130.458 216.838 131.301C221.478 134.254 224.219 136.784 225.063 138.893C226.328 140.58 228.015 141.846 230.124 142.689ZM125.102 156.608C125.946 158.717 125.946 161.458 125.102 164.832C124.259 168.207 122.15 170.316 118.775 171.159C117.088 176.642 115.612 181.493 114.347 185.71C113.081 189.506 111.394 193.302 109.285 197.098C105.911 197.942 102.959 199.207 100.428 200.894C98.3193 202.581 95.9996 203.847 93.4689 204.69C86.2987 206.799 79.5503 205.956 73.2237 202.16C66.897 198.364 61.414 194.146 56.7744 189.506C49.6042 182.336 43.0667 174.744 37.1619 166.73C31.257 158.295 27.0393 149.859 24.5086 141.424C24.0868 140.159 24.0868 139.104 24.5086 138.261C24.9304 137.417 25.1413 136.152 25.1413 134.465C22.6106 132.356 21.3453 130.458 21.3453 128.771C21.3453 126.662 20.9235 124.975 20.08 123.709C23.0324 120.335 25.563 116.539 27.6719 112.321C29.7808 108.104 31.8897 103.886 33.9985 99.6681C36.1074 95.4504 38.4272 91.4435 40.9578 87.6475C43.4885 83.8516 46.6518 80.6882 50.4478 78.1576C51.2913 74.7834 52.5567 72.4636 54.2438 71.1983C55.9309 69.5112 57.4071 67.6132 58.6724 65.5043C63.312 62.5519 67.5297 59.1777 71.3257 55.3817C75.1217 51.5857 79.9721 48.6333 85.8769 46.5244C89.2511 46.1026 92.8362 45.6809 96.6322 45.2591C100.85 44.8373 104.013 46.1026 106.122 49.0551C106.122 51.1639 105.7 53.0619 104.857 54.749C104.013 56.0144 103.17 57.4906 102.326 59.1777C96.4213 60.0212 90.5165 61.4974 84.6116 63.6063C78.7068 65.2934 74.6999 68.6676 72.591 73.7289C70.9039 73.3072 69.8495 73.7289 69.4277 74.9943C69.0059 76.2596 68.1624 77.314 66.897 78.1576C65.6317 81.5318 64.5773 85.1169 63.7337 88.9129C62.8902 92.7088 61.414 95.8722 59.3051 98.4028C59.7269 101.777 59.7269 105.151 59.3051 108.525C59.3051 111.478 58.4615 114.219 56.7744 116.75C58.4615 117.172 59.0942 118.226 58.6724 119.913C58.2506 121.179 57.8289 122.444 57.4071 123.709C57.8289 125.818 58.6724 127.505 59.9377 128.771C61.6248 129.614 62.8902 130.88 63.7337 132.567C67.1079 129.192 70.693 127.294 74.489 126.873C78.7068 126.451 82.7136 125.818 86.5096 124.975C90.7274 127.084 96.2104 129.825 102.959 133.199C110.129 136.152 114.979 139.315 117.51 142.689C119.197 146.907 120.673 149.859 121.939 151.547C123.626 152.812 124.68 154.499 125.102 156.608ZM152.939 121.179C150.409 118.226 148.932 117.172 148.511 118.015C148.089 118.859 147.034 119.281 145.347 119.281C147.878 122.655 149.565 124.131 150.409 123.709C151.252 122.866 152.096 122.022 152.939 121.179ZM199.124 137.628C194.484 135.519 190.688 135.941 187.736 138.893C185.205 141.424 181.62 142.689 176.98 142.689C173.606 145.22 170.021 147.54 166.225 149.649C162.429 151.757 158.211 153.866 153.572 155.975C155.259 159.349 156.313 160.826 156.735 160.404C157.579 159.982 158.633 159.982 159.899 160.404C161.164 157.03 163.484 154.71 166.858 153.445C170.232 152.179 174.239 151.336 178.878 150.914C179.722 147.54 182.674 145.431 187.736 144.587C193.219 143.322 197.015 141.002 199.124 137.628ZM217.471 145.853C213.253 144.587 210.933 144.376 210.512 145.22C210.09 145.642 209.457 146.063 208.614 146.485C204.396 147.751 201.022 149.438 198.491 151.547C196.382 153.655 194.273 155.132 192.164 155.975C191.743 157.662 190.056 159.138 187.103 160.404C184.151 161.247 180.987 161.88 177.613 162.302C181.831 165.676 185.416 166.098 188.368 163.567C191.743 161.036 194.695 159.771 197.226 159.771C196.382 161.458 195.328 162.724 194.062 163.567C192.797 163.989 191.743 164.832 190.899 166.098C187.947 164.832 185.838 165.465 184.572 167.996C183.307 170.105 180.987 171.159 177.613 171.159C172.552 168.628 169.599 168.839 168.756 171.792C169.599 172.635 170.443 172.424 171.286 171.159C172.552 169.894 174.028 169.472 175.715 169.894C174.028 172.424 172.552 174.533 171.286 176.22C170.443 177.908 168.967 178.962 166.858 179.384C168.967 184.445 172.341 186.976 176.98 186.976C181.62 186.976 186.892 187.397 192.797 188.241C195.749 185.71 199.124 183.18 202.92 180.649C207.137 178.118 210.512 175.166 213.042 171.792C215.995 168.418 218.104 164.622 219.369 160.404C220.634 156.186 220.002 151.336 217.471 145.853ZM157.368 138.893C153.572 135.519 150.83 134.676 149.143 136.363C147.878 137.628 146.191 138.682 144.082 139.526C148.3 142.057 151.041 142.9 152.307 142.057C153.572 140.791 155.259 139.737 157.368 138.893ZM189.001 150.281C187.314 149.859 185.838 150.281 184.572 151.547C183.729 152.39 182.253 152.39 180.144 151.547C177.191 156.186 172.763 159.138 166.858 160.404C161.375 161.669 156.735 163.989 152.939 167.363C160.109 169.05 166.014 167.785 170.654 163.567C175.293 159.349 180.566 156.819 186.47 155.975L189.001 150.281ZM161.164 143.955C157.368 143.111 153.994 143.955 151.041 146.485C148.511 149.016 147.245 151.336 147.245 153.445C149.776 152.601 152.096 151.336 154.205 149.649C156.735 147.961 159.055 146.063 161.164 143.955ZM46.0192 104.729C44.3321 104.729 42.6449 105.573 40.9578 107.26C39.6925 108.947 38.6381 110.634 37.7945 112.321C37.3728 114.009 37.3728 115.696 37.7945 117.383C38.6381 119.07 40.5361 119.913 43.4885 119.913C44.3321 117.383 44.9647 115.063 45.3865 112.954C45.8083 110.845 46.0192 108.104 46.0192 104.729ZM114.347 165.465C114.769 162.091 114.136 159.349 112.449 157.241C111.183 154.71 110.129 152.39 109.285 150.281C104.646 148.594 100.85 146.485 97.8975 143.955C95.3669 141.002 92.4145 138.471 89.0403 136.363C85.2443 136.784 82.2919 137.206 80.183 137.628C78.0741 137.628 76.5979 138.261 75.7543 139.526C77.8632 139.948 79.5503 139.948 80.8156 139.526C82.081 138.682 83.3463 138.05 84.6116 137.628C85.4552 143.533 83.7681 147.54 79.5503 149.649C75.3326 151.336 72.1692 154.288 70.0604 158.506C75.1217 157.662 79.3394 156.186 82.7136 154.077C86.0878 151.547 90.5165 150.703 95.9996 151.547C98.1084 154.077 98.7411 156.608 97.8975 159.138C97.4758 161.669 96.4213 163.989 94.7342 166.098C93.0471 167.785 91.1491 169.261 89.0403 170.526C86.9314 171.792 85.2443 172.846 83.979 173.69C83.5572 177.064 82.9245 179.384 82.081 180.649C81.2374 181.914 80.183 183.18 78.9176 184.445C80.183 189.506 80.8156 192.459 80.8156 193.302C82.9245 193.302 84.8225 193.513 86.5096 193.935C88.6185 194.357 90.9382 194.146 93.4689 193.302C95.156 192.881 97.2649 191.404 99.7955 188.874C102.326 186.343 104.646 183.601 106.755 180.649C108.864 177.275 110.551 174.322 111.816 171.792C113.503 168.839 114.347 166.73 114.347 165.465ZM44.7538 123.709C42.6449 123.288 40.9578 123.498 39.6925 124.342C38.849 125.186 37.7945 125.818 36.5292 126.24C36.951 128.349 36.5292 130.036 35.2639 131.301C34.4203 132.567 34.4203 134.254 35.2639 136.363C38.6381 132.988 41.8014 128.771 44.7538 123.709ZM93.4689 160.404C89.2511 157.873 86.0878 157.451 83.979 159.138C81.8701 160.404 79.3394 161.458 76.387 162.302C71.3257 164.411 67.7406 166.309 65.6317 167.996C63.9446 169.683 60.9922 170.316 56.7744 169.894C58.0398 172.846 59.7269 175.377 61.8357 177.486C63.9446 179.173 65.4208 181.703 66.2644 185.078C73.0128 180.86 78.0741 176.642 81.4483 172.424C84.8225 167.785 88.8294 163.778 93.4689 160.404ZM50.4478 139.526C47.4954 139.526 45.5974 140.159 44.7538 141.424C43.9103 142.689 42.4341 143.744 40.3252 144.587C43.2776 147.54 45.3865 147.961 46.6518 145.853C48.3389 143.744 49.6042 141.635 50.4478 139.526ZM63.7337 152.179C61.6248 152.601 59.3051 153.445 56.7744 154.71C54.2438 155.975 52.1349 157.451 50.4478 159.138C49.1825 160.404 48.3389 161.88 47.9171 163.567C47.9171 165.254 49.6042 166.941 52.9784 168.628C53.4002 164.832 55.0873 162.091 58.0398 160.404C61.414 158.295 63.312 155.553 63.7337 152.179ZM214.94 155.975C214.94 158.506 214.097 160.193 212.41 161.036C211.144 161.88 210.09 163.356 209.246 165.465C204.185 167.574 201.654 167.785 201.654 166.098C204.185 162.302 206.294 159.771 207.981 158.506C210.09 157.241 211.355 155.343 211.777 152.812L214.94 155.975ZM206.083 159.138C202.287 160.404 199.967 160.615 199.124 159.771C201.654 158.506 203.552 157.873 204.818 157.873C206.083 157.451 206.505 156.186 206.083 154.077V159.138ZM201.022 169.261C201.865 171.37 201.233 173.268 199.124 174.955C197.437 176.22 196.171 177.697 195.328 179.384C196.593 176.431 197.226 174.322 197.226 173.057C197.647 171.792 197.437 170.737 196.593 169.894L201.022 169.261Z" fill="#4464AD"/>
-                        </svg>
-
-
-
-                    <p>
-                        Ces cookies ont fait l’unanimité au bureau ! Croustillants à l’extérieur, fondants à l’intérieur… On sent vraiment le goût du vrai chocolat, pas celui des versions industrielles. Et la recette est tellement claire qu’on ne peut pas la rater.
-                    </p>
-                    </div>
-                    <div class="py-8 font-bold text-sm">
-                        <p>— Cédric Doumbé</p>
-                        <p>Combattant UFC</p>
-                    </div>
+            </div>
+        </div>
+        <!-- Slide 5 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/coulantAuChocolat.jpg" alt="Coulant au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Coulant au chocolat</span>
                 </div>
-                
-                <!-- Third Testimonial -->
-                <div class="bg-[#44AF69] [&_p]:text-[#1C3625] p-6 rounded-md">
-                    <div>
-                        <!-- Icon -->
-                        <svg width="50" height="50" viewBox="0 0 251 251" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="251" height="251" rx="20" fill="#1C3625"/>
-                        <path d="M230.124 142.689C231.39 153.234 230.546 161.247 227.594 166.73C224.641 172.214 220.845 178.329 216.206 185.078C211.988 186.343 209.668 187.608 209.246 188.874C208.825 190.139 207.981 190.983 206.716 191.404C202.92 193.935 198.491 195.833 193.43 197.098C188.79 197.942 183.729 198.153 178.246 197.731C173.184 197.309 168.334 196.044 163.695 193.935C159.055 191.826 155.892 189.085 154.205 185.71C152.096 186.132 150.619 186.132 149.776 185.71C148.932 184.867 147.878 184.234 146.613 183.812C146.613 179.595 144.504 177.486 140.286 177.486C140.708 173.268 140.075 170.737 138.388 169.894C137.123 169.05 136.068 167.996 135.225 166.73C136.49 165.043 136.701 163.567 135.857 162.302C135.014 160.615 135.014 158.717 135.857 156.608C135.014 154.921 133.959 153.866 132.694 153.445C131.85 153.023 131.007 152.39 130.163 151.547C128.898 148.594 129.32 146.274 131.429 144.587C133.538 142.9 134.381 140.369 133.959 136.995C133.116 136.152 131.64 135.519 129.531 135.097C127.844 134.676 126.367 134.043 125.102 133.199C125.946 131.934 125.735 130.669 124.469 129.403C123.626 128.138 122.782 127.084 121.939 126.24C122.782 123.288 123.626 121.39 124.469 120.546C125.313 119.702 125.735 118.648 125.735 117.383C134.592 107.26 141.762 98.4028 147.245 90.8108C153.15 82.7971 159.688 75.2052 166.858 68.035C171.076 65.5043 174.872 63.8172 178.246 62.9737C182.042 62.1301 184.994 60.443 187.103 57.9124C192.586 57.4906 198.28 56.4361 204.185 54.749C210.512 52.6402 215.995 53.6946 220.634 57.9124C220.634 60.0212 218.947 61.7083 215.573 62.9737C212.199 63.8172 209.879 63.1845 208.614 61.0757C206.927 64.0281 205.239 65.7152 203.552 66.137C202.287 66.5588 201.443 67.4023 201.022 68.6676C187.525 71.6201 177.402 78.5794 170.654 89.5455C163.905 100.512 162.851 112.954 167.491 126.873C170.865 128.138 173.817 127.927 176.348 126.24C179.3 124.131 182.042 123.288 184.572 123.709C190.056 124.975 193.851 125.186 195.96 124.342C198.069 123.498 199.545 124.131 200.389 126.24C204.185 125.396 207.137 125.818 209.246 127.505C211.355 129.192 213.886 130.458 216.838 131.301C221.478 134.254 224.219 136.784 225.063 138.893C226.328 140.58 228.015 141.846 230.124 142.689ZM125.102 156.608C125.946 158.717 125.946 161.458 125.102 164.832C124.259 168.207 122.15 170.316 118.775 171.159C117.088 176.642 115.612 181.493 114.347 185.71C113.081 189.506 111.394 193.302 109.285 197.098C105.911 197.942 102.959 199.207 100.428 200.894C98.3193 202.581 95.9996 203.847 93.4689 204.69C86.2987 206.799 79.5503 205.956 73.2237 202.16C66.897 198.364 61.414 194.146 56.7744 189.506C49.6042 182.336 43.0667 174.744 37.1619 166.73C31.257 158.295 27.0393 149.859 24.5086 141.424C24.0868 140.159 24.0868 139.104 24.5086 138.261C24.9304 137.417 25.1413 136.152 25.1413 134.465C22.6106 132.356 21.3453 130.458 21.3453 128.771C21.3453 126.662 20.9235 124.975 20.08 123.709C23.0324 120.335 25.563 116.539 27.6719 112.321C29.7808 108.104 31.8897 103.886 33.9985 99.6681C36.1074 95.4504 38.4272 91.4435 40.9578 87.6475C43.4885 83.8516 46.6518 80.6882 50.4478 78.1576C51.2913 74.7834 52.5567 72.4636 54.2438 71.1983C55.9309 69.5112 57.4071 67.6132 58.6724 65.5043C63.312 62.5519 67.5297 59.1777 71.3257 55.3817C75.1217 51.5857 79.9721 48.6333 85.8769 46.5244C89.2511 46.1026 92.8362 45.6809 96.6322 45.2591C100.85 44.8373 104.013 46.1026 106.122 49.0551C106.122 51.1639 105.7 53.0619 104.857 54.749C104.013 56.0144 103.17 57.4906 102.326 59.1777C96.4213 60.0212 90.5165 61.4974 84.6116 63.6063C78.7068 65.2934 74.6999 68.6676 72.591 73.7289C70.9039 73.3072 69.8495 73.7289 69.4277 74.9943C69.0059 76.2596 68.1624 77.314 66.897 78.1576C65.6317 81.5318 64.5773 85.1169 63.7337 88.9129C62.8902 92.7088 61.414 95.8722 59.3051 98.4028C59.7269 101.777 59.7269 105.151 59.3051 108.525C59.3051 111.478 58.4615 114.219 56.7744 116.75C58.4615 117.172 59.0942 118.226 58.6724 119.913C58.2506 121.179 57.8289 122.444 57.4071 123.709C57.8289 125.818 58.6724 127.505 59.9377 128.771C61.6248 129.614 62.8902 130.88 63.7337 132.567C67.1079 129.192 70.693 127.294 74.489 126.873C78.7068 126.451 82.7136 125.818 86.5096 124.975C90.7274 127.084 96.2104 129.825 102.959 133.199C110.129 136.152 114.979 139.315 117.51 142.689C119.197 146.907 120.673 149.859 121.939 151.547C123.626 152.812 124.68 154.499 125.102 156.608ZM152.939 121.179C150.409 118.226 148.932 117.172 148.511 118.015C148.089 118.859 147.034 119.281 145.347 119.281C147.878 122.655 149.565 124.131 150.409 123.709C151.252 122.866 152.096 122.022 152.939 121.179ZM199.124 137.628C194.484 135.519 190.688 135.941 187.736 138.893C185.205 141.424 181.62 142.689 176.98 142.689C173.606 145.22 170.021 147.54 166.225 149.649C162.429 151.757 158.211 153.866 153.572 155.975C155.259 159.349 156.313 160.826 156.735 160.404C157.579 159.982 158.633 159.982 159.899 160.404C161.164 157.03 163.484 154.71 166.858 153.445C170.232 152.179 174.239 151.336 178.878 150.914C179.722 147.54 182.674 145.431 187.736 144.587C193.219 143.322 197.015 141.002 199.124 137.628ZM217.471 145.853C213.253 144.587 210.933 144.376 210.512 145.22C210.09 145.642 209.457 146.063 208.614 146.485C204.396 147.751 201.022 149.438 198.491 151.547C196.382 153.655 194.273 155.132 192.164 155.975C191.743 157.662 190.056 159.138 187.103 160.404C184.151 161.247 180.987 161.88 177.613 162.302C181.831 165.676 185.416 166.098 188.368 163.567C191.743 161.036 194.695 159.771 197.226 159.771C196.382 161.458 195.328 162.724 194.062 163.567C192.797 163.989 191.743 164.832 190.899 166.098C187.947 164.832 185.838 165.465 184.572 167.996C183.307 170.105 180.987 171.159 177.613 171.159C172.552 168.628 169.599 168.839 168.756 171.792C169.599 172.635 170.443 172.424 171.286 171.159C172.552 169.894 174.028 169.472 175.715 169.894C174.028 172.424 172.552 174.533 171.286 176.22C170.443 177.908 168.967 178.962 166.858 179.384C168.967 184.445 172.341 186.976 176.98 186.976C181.62 186.976 186.892 187.397 192.797 188.241C195.749 185.71 199.124 183.18 202.92 180.649C207.137 178.118 210.512 175.166 213.042 171.792C215.995 168.418 218.104 164.622 219.369 160.404C220.634 156.186 220.002 151.336 217.471 145.853ZM157.368 138.893C153.572 135.519 150.83 134.676 149.143 136.363C147.878 137.628 146.191 138.682 144.082 139.526C148.3 142.057 151.041 142.9 152.307 142.057C153.572 140.791 155.259 139.737 157.368 138.893ZM189.001 150.281C187.314 149.859 185.838 150.281 184.572 151.547C183.729 152.39 182.253 152.39 180.144 151.547C177.191 156.186 172.763 159.138 166.858 160.404C161.375 161.669 156.735 163.989 152.939 167.363C160.109 169.05 166.014 167.785 170.654 163.567C175.293 159.349 180.566 156.819 186.47 155.975L189.001 150.281ZM161.164 143.955C157.368 143.111 153.994 143.955 151.041 146.485C148.511 149.016 147.245 151.336 147.245 153.445C149.776 152.601 152.096 151.336 154.205 149.649C156.735 147.961 159.055 146.063 161.164 143.955ZM46.0192 104.729C44.3321 104.729 42.6449 105.573 40.9578 107.26C39.6925 108.947 38.6381 110.634 37.7945 112.321C37.3728 114.009 37.3728 115.696 37.7945 117.383C38.6381 119.07 40.5361 119.913 43.4885 119.913C44.3321 117.383 44.9647 115.063 45.3865 112.954C45.8083 110.845 46.0192 108.104 46.0192 104.729ZM114.347 165.465C114.769 162.091 114.136 159.349 112.449 157.241C111.183 154.71 110.129 152.39 109.285 150.281C104.646 148.594 100.85 146.485 97.8975 143.955C95.3669 141.002 92.4145 138.471 89.0403 136.363C85.2443 136.784 82.2919 137.206 80.183 137.628C78.0741 137.628 76.5979 138.261 75.7543 139.526C77.8632 139.948 79.5503 139.948 80.8156 139.526C82.081 138.682 83.3463 138.05 84.6116 137.628C85.4552 143.533 83.7681 147.54 79.5503 149.649C75.3326 151.336 72.1692 154.288 70.0604 158.506C75.1217 157.662 79.3394 156.186 82.7136 154.077C86.0878 151.547 90.5165 150.703 95.9996 151.547C98.1084 154.077 98.7411 156.608 97.8975 159.138C97.4758 161.669 96.4213 163.989 94.7342 166.098C93.0471 167.785 91.1491 169.261 89.0403 170.526C86.9314 171.792 85.2443 172.846 83.979 173.69C83.5572 177.064 82.9245 179.384 82.081 180.649C81.2374 181.914 80.183 183.18 78.9176 184.445C80.183 189.506 80.8156 192.459 80.8156 193.302C82.9245 193.302 84.8225 193.513 86.5096 193.935C88.6185 194.357 90.9382 194.146 93.4689 193.302C95.156 192.881 97.2649 191.404 99.7955 188.874C102.326 186.343 104.646 183.601 106.755 180.649C108.864 177.275 110.551 174.322 111.816 171.792C113.503 168.839 114.347 166.73 114.347 165.465ZM44.7538 123.709C42.6449 123.288 40.9578 123.498 39.6925 124.342C38.849 125.186 37.7945 125.818 36.5292 126.24C36.951 128.349 36.5292 130.036 35.2639 131.301C34.4203 132.567 34.4203 134.254 35.2639 136.363C38.6381 132.988 41.8014 128.771 44.7538 123.709ZM93.4689 160.404C89.2511 157.873 86.0878 157.451 83.979 159.138C81.8701 160.404 79.3394 161.458 76.387 162.302C71.3257 164.411 67.7406 166.309 65.6317 167.996C63.9446 169.683 60.9922 170.316 56.7744 169.894C58.0398 172.846 59.7269 175.377 61.8357 177.486C63.9446 179.173 65.4208 181.703 66.2644 185.078C73.0128 180.86 78.0741 176.642 81.4483 172.424C84.8225 167.785 88.8294 163.778 93.4689 160.404ZM50.4478 139.526C47.4954 139.526 45.5974 140.159 44.7538 141.424C43.9103 142.689 42.4341 143.744 40.3252 144.587C43.2776 147.54 45.3865 147.961 46.6518 145.853C48.3389 143.744 49.6042 141.635 50.4478 139.526ZM63.7337 152.179C61.6248 152.601 59.3051 153.445 56.7744 154.71C54.2438 155.975 52.1349 157.451 50.4478 159.138C49.1825 160.404 48.3389 161.88 47.9171 163.567C47.9171 165.254 49.6042 166.941 52.9784 168.628C53.4002 164.832 55.0873 162.091 58.0398 160.404C61.414 158.295 63.312 155.553 63.7337 152.179ZM214.94 155.975C214.94 158.506 214.097 160.193 212.41 161.036C211.144 161.88 210.09 163.356 209.246 165.465C204.185 167.574 201.654 167.785 201.654 166.098C204.185 162.302 206.294 159.771 207.981 158.506C210.09 157.241 211.355 155.343 211.777 152.812L214.94 155.975ZM206.083 159.138C202.287 160.404 199.967 160.615 199.124 159.771C201.654 158.506 203.552 157.873 204.818 157.873C206.083 157.451 206.505 156.186 206.083 154.077V159.138ZM201.022 169.261C201.865 171.37 201.233 173.268 199.124 174.955C197.437 176.22 196.171 177.697 195.328 179.384C196.593 176.431 197.226 174.322 197.226 173.057C197.647 171.792 197.437 170.737 196.593 169.894L201.022 169.261Z" fill="#44AF69"/>
-                        </svg>
-                    <p>
-                        J’ai suivi la recette pour un cadeau fait maison à ma copine… Résultat : elle m’a demandé où je les avais achetées ! Faciles à rouler, fondantes en bouche, et surtout pas trop sucrées. Un vrai petit luxe à portée de main.
-                    </p>
-                    </div>
-                    <div class="py-8 font-bold text-sm">
-                        <p>— Lina Martinez</p>
-                        <p>étudiante en design culinaire</p>
-                    </div>
+            </div>
+        </div>
+        <!-- Slide 6 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/croissantAuChocolat.jpg" alt="Croissant au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Croissant au chocolat</span>
                 </div>
-            </section>
-        </section>
+            </div>
+        </div>
+        <!-- Slide 7 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/tarteAuChocolat.jpg" alt="Tarte au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Tarte au chocolat</span>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 8 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/souffleAuChocolat.jpg" alt="Soufflé au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Soufflé au chocolat</span>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 9 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/fraisesAuChocolat.jpg" alt="Fraises au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Fraises au chocolat</span>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 10 -->
+        <div class="flex-shrink-0 w-full md:w-1/3 p-4 cursor-pointer group" onclick="window.location.href=''">
+            <div class="relative">
+                <img src="images/brownieAuChocolat.jpg" alt="Brownie au chocolat" class="w-full h-100 object-cover rounded-lg">
+                <div class="absolute inset-8 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-75 rounded-lg">
+                    <span class="text-white text-xl font-semibold">Brownie au chocolat</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <script src="js/script.js"></script>
-    </body>
+    <!-- Boutons de navigation -->
+    <button id="prev-btn" class="absolute top-1/2 left-1 transform -translate-y-1/2 p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#4d2c16]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button id="next-btn" class="absolute top-1/2 right-1 transform -translate-y-1/2 p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#4d2c16]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+</div>
+
+
+    </div>
+</section>
+
+<script src="js/script.js"></script>
+</body>
 </html>
