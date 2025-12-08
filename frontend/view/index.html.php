@@ -235,71 +235,33 @@
         <br />
     </div>
     <div class="flex items-center pt-6">
-        <div class="flex flex-col sm:flex-row gap-4 mx-auto">
-            <a href="#_">
-                <div class="relative inline-block group">
-                    <img
-                        src="../../frontend/assets/images/croissantAuChocolat.jpg"
-                        class="rounded-xl h-60 w-60 rotate-6 group-hover:rotate-0 duration-500 group-hover:-translate-y-12"
-                    />
-                    <div
-                        class="absolute top-0 left-0 w-full h-full flex items-start justify-start pt-2 pl-3 transform rotate-6 group-hover:rotate-0 group-hover:-translate-y-12 duration-500"
-                    >
-                        <div class="flex gap-1 text-yellow-500">
-                            <i data-lucide="star" class="w-5 h-5"></i>
-                            <span class="text-sm font-bold">5</span>
+        <div class="flex flex-col sm:flex-row gap-4 mx-auto justify-center">
+            <?php if (!empty($starRecipes)): ?>
+                <?php foreach ($starRecipes as $recipe): ?>
+                    <a href="?pg=recette&slug=<?= htmlspecialchars($recipe->getRecipeSlug()) ?>">
+                        <div class="relative inline-block group">
+                            <img
+                                src="../../frontend/assets/images/<?= htmlspecialchars($recipe->getRecipeImg() ?? 'default.jpg') ?>"
+                                class="rounded-xl h-60 w-60 rotate-6 group-hover:rotate-0 duration-500 group-hover:-translate-y-12 object-cover"
+                                alt="<?= htmlspecialchars($recipe->getRecipeTitle()) ?>"
+                            />
+                            <div
+                                class="absolute top-0 left-0 w-full h-full flex items-start justify-start pt-2 pl-3 transform rotate-6 group-hover:rotate-0 group-hover:-translate-y-12 duration-500"
+                            >
+                                <div class="flex gap-1 text-yellow-500">
+                                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                    <span class="text-sm font-bold"><?= number_format($recipe->average_rating ?? 0, 1) ?></span>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full p-2 text-center bg-black bg-opacity-50 text-white rounded-b-xl">
+                                <span class="text-sm font-semibold"><?= htmlspecialchars($recipe->getRecipeTitle()) ?></span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#_">
-                <div class="relative inline-block group">
-                    <img
-                        src="../../frontend/assets/images/mousseAuChocolat.jpg"
-                        class="rounded-xl h-60 w-60 -rotate-12 group-hover:rotate-0 duration-500 group-hover:-translate-y-12"
-                    />
-                    <div
-                        class="absolute top-0 left-0 w-full h-full flex items-start justify-start pt-2 pl-3 transform -rotate-12 group-hover:rotate-0 group-hover:-translate-y-12 duration-500"
-                    >
-                        <div class="flex gap-1 text-yellow-500">
-                            <i data-lucide="star" class="w-5 h-5"></i>
-                            <span class="text-sm font-bold">5</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#_">
-                <div class="relative inline-block group">
-                    <img
-                        src="../../frontend/assets/images/souffleAuChocolat.jpg"
-                        class="rounded-xl h-60 w-60 rotate-6 group-hover:rotate-0 duration-500 group-hover:-translate-y-12"
-                    />
-                    <div
-                        class="absolute top-0 left-0 w-full h-full flex items-start justify-start pt-2 pl-3 transform rotate-6 group-hover:rotate-0 group-hover:-translate-y-12 duration-500"
-                    >
-                        <div class="flex gap-1 text-yellow-500">
-                            <i data-lucide="star" class="w-5 h-5"></i>
-                            <span class="text-sm font-bold">5</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#_">
-                <div class="relative inline-block group">
-                    <img
-                        src="../../frontend/assets/images/tarteAuChocolat.jpg"
-                        class="rounded-xl h-60 w-60 -rotate-12 group-hover:rotate-0 duration-500 group-hover:-translate-y-12"
-                    />
-                    <div
-                        class="absolute top-0 left-0 w-full h-full flex items-start justify-start pt-2 pl-3 transform -rotate-12 group-hover:rotate-0 group-hover:-translate-y-12 duration-500"
-                    >
-                        <div class="flex gap-1 text-yellow-500">
-                            <i data-lucide="star" class="w-5 h-5"></i>
-                            <span class="text-sm font-bold">5</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                    </a>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-lg text-[#7a3c18]">Aucune recette star pour le moment.</p>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -309,7 +271,7 @@
     id="testimonials-section"
 >
     <div class="py-10 text-center">
-        <h1 class="text-5xl md:text-4xl font-medium text-[#7a3c18]">
+        <h1 class="text-5xl md:text-8xl font-medium text-[#7a3c18]">
             Ils ont fondu de plaisir
         </h1>
         <p class="text-xl py-10">
@@ -620,6 +582,23 @@
 <!-- Footer -->
   <?php include_once "../../frontend/view/components/_footer.html.php"; ?>
 
+<script>
+    <?php
+    // On prépare les données pour le carrousel JS
+    $carouselDataForJs = [];
+    if (isset($carouselRecipes) && !empty($carouselRecipes)) {
+        foreach ($carouselRecipes as $recipe) {
+            $carouselDataForJs[] = [
+                'image' => '../../frontend/assets/images/' . ($recipe->getRecipeImg() ?? 'default.jpg'),
+                'title' => $recipe->getRecipeTitle(),
+                'url'   => '?pg=recette&slug=' . $recipe->getRecipeSlug()
+            ];
+        }
+    }
+    ?>
+    // On injecte les données PHP dans une variable globale JS
+    const carouselData = <?= json_encode($carouselDataForJs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
+</script>
 <script src="../../frontend/assets/js/script.js"></script>
 </body>
 </html>

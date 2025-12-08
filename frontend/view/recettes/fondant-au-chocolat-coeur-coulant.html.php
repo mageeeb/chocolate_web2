@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fondant au Chocolat – Page Recette</title>
+    <link rel="stylesheet" href="../../frontend/assets/css/style.css" />
 
     <style>
         :root{
@@ -351,6 +352,11 @@
 </head>
 <body>
 
+<main>
+    <!-- Navbar -->
+    <?php include "../../frontend/view/components/_menu.html.php"; ?>
+</main>
+
 <div class="progress"><i id="progressBar"></i></div>
 
 <header class="hero" id="top">
@@ -594,10 +600,6 @@
 </main>
 
 <button id="backToTop" aria-label="Retour en haut">↑ Haut</button>
-
-<footer>
-    Bon appétit ! Si tu veux une version « chocolat blanc » ou « double fondant », dis-moi.
-</footer>
 
 <script>
     /* 1) SCROLL PROGRESS BAR */

@@ -7,7 +7,7 @@
                     class="flex flex-col justify-between gap-20 my-[400px] sm:flex-col md:flex-row lg:flex-row"
                 >
                     <div>
-                        <h2 class="text-3xl mb-2 text-[#7a3c18]">Follow us</h2>
+                        <h2 class="text-3xl mb-2 text-[#7a3c18] font-reenie-beanie">Follow us</h2>
                         <div class="flex gap-3 relative z-10">
                             <a
                                 href="https://www.instagram.com/cf2m_bruxelles/"
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div >
-                        <h2 class="text-3xl mb-4 text-[#7a3c18]">Pages</h2>
+                        <h2 class="text-3xl mb-4 text-[#7a3c18] font-reenie-beanie">Pages</h2>
                         <div class="text-[#3D1F0D]">
                             <a class="block hover:text-[#7a3c18]" href="./">Home</a>
                             <a class="block hover:text-[#7a3c18]" href="../../category.html">Recipes</a>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="text-3xl mb-4 text-[#7a3c18]">Info</h2>
+                        <h2 class="text-3xl mb-4 text-[#7a3c18] font-reenie-beanie">Info</h2>
                         <div class="text-[#3D1F0D]">
                             <a
                                 class="block"

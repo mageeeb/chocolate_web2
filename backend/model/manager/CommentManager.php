@@ -25,11 +25,11 @@ class CommentManager implements ManagerInterface
     public function getAllComments(): array
     {
         $sql = "SELECT c.*, u.`users_id`, u.`user_name`, r.`recipes_id`, r.`recipe_title` , r.`recipe_slug`
-                FROM `comment` c
+                FROM `comments` c
                 INNER JOIN `users` u ON c.`users_users_id` = u.`users_id`
                 INNER JOIN `recipes` r ON c.`recipes_recipes_id` = r.`recipes_id`
                 ORDER BY c.`comment_created_date` DESC";
-        $prepare = $this->db->prepare($sql);
+        $prepare = $this->connect->prepare($sql);
         try {
             $prepare->execute();
             $result = $prepare->fetchAll(PDO::FETCH_ASSOC);

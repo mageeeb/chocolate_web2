@@ -100,7 +100,7 @@
                 ?>
                 <div id="rating-section" data-recipe-id="<?= $recipeId ?>" class="flex items-center gap-1">
                     <i data-lucide="star" class="w-5 h-5"></i>
-                    <span id="rating-average"><?= number_format($averageRating, 1) ?></span>/5
+                    <span id="rating-average"><?= number_format($averageRating, 1) ?></span>/ 5.0
                     (<span id="rating-count"><?= $ratingCount ?></span>)
                     <div id="star-rating" class="flex ml-2">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
@@ -113,7 +113,7 @@
             </div>
             <!-- Titre -->
             <h2
-                class="relative text-3xl text-[#4d2c16] inline-block py-5 bg-no-repeat bg-[position:-170px_100%] md:bg-[position:-140px_100%] lg:bg-[position:-185px_100%] xl:bg-[position:-265px_100%] bg-[length:130%_12px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%2020%22%3E%3Cpath%20d%3D%22M5%2010%20Q25%203%2050%2010%20T100%2010%20T150%2010%20T235%2010%22%20stroke%3D%22%234d2c16%22%20stroke-width%3D%224%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E')]"
+                class="relative text-3xl text-[#4d2c16] inline-block py-5 bg-no-repeat bg-[position:-170px_100%] md:bg-[position:-140px_100%] lg:bg-[position:-185px_100%] xl:bg-[position:-265px_100%] 2xl:bg-[position:-350px_100%] bg-[length:130%_12px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%2020%22%3E%3Cpath%20d%3D%22M5%2010%20Q25%203%2050%2010%20T100%2010%20T150%2010%20T235%2010%22%20stroke%3D%22%234d2c16%22%20stroke-width%3D%224%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E')]"
             >
                 Ingrédients
             </h2>
@@ -398,7 +398,7 @@
     <!-- Réalisations (étapes) -->
     <section class="ps-5 md:ps-0">
         <h1
-            class="relative text-3xl text-[#4d2c16] inline-block md:block md:pe-10 md:text-end pb-5 bg-no-repeat bg-bottom md:bg-[position:-170px_100%] md:bg-[position:145px_100%] lg:bg-[position:233px_100%] xl:bg-[position:325px_100%] bg-[length:130%_12px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%2020%22%3E%3Cpath%20d%3D%22M5%2010%20Q25%203%2050%2010%20T100%2010%20T150%2010%20T235%2010%22%20stroke%3D%22%234d2c16%22%20stroke-width%3D%224%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E')]"
+            class="relative text-3xl text-[#4d2c16] inline-block md:block md:pe-10 md:text-end pb-5 bg-no-repeat bg-bottom md:bg-[position:-170px_100%] md:bg-[position:145px_100%] lg:bg-[position:233px_100%] xl:bg-[position:325px_100%] 2xl:bg-[position:415px_100%] bg-[length:130%_12px] bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http://www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%2020%22%3E%3Cpath%20d%3D%22M5%2010%20Q25%203%2050%2010%20T100%2010%20T150%2010%20T235%2010%22%20stroke%3D%22%234d2c16%22%20stroke-width%3D%224%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E')]"
         >
             Réalisation
         </h1>
