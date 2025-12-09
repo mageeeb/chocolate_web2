@@ -23,11 +23,17 @@ class RecipesMapping extends AbstractMapping
   protected ?UserMapping $user = null;
   protected ?array $comments = null;
   protected ?array $likesInfo = null;
+  public ?string $average_rating = null;
 
-    public function getUsersUsersId(): ?int
-    {
-        return $this->users_users_id;
-    }
+  public function getAverageRating(): ?string
+  {
+    return $this->average_rating;
+  }
+
+  public function getUsersUsersId(): ?int
+  {
+    return $this->users_users_id;
+  }
 
   public function getRecipesId(): ?int
   {

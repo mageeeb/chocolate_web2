@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="images/tablette_chocolat1.ico" type="image/png" />
+    <link rel="icon" href="../../frontend/assets/images/tablette_chocolat1.ico" type="image/png" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="../../frontend/view/recettes/Sola/style/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">

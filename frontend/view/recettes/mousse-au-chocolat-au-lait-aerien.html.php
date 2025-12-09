@@ -6,11 +6,7 @@
     <title>Mousse au Chocolat - Chocolat Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../css/style.css" />
-    <link
-      rel="icon"
-      href="../../images/tablette_chocolat1.ico"
-      type="image/png"
-    />
+  <link rel="icon" href="../../frontend/assets/images/tablette_chocolat1.ico" type="image/png" />
     <style>
       .line-through {
         text-decoration: line-through;

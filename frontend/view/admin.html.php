@@ -6,6 +6,7 @@
     <title>Panneau d'Administration - Chocolat Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../frontend/assets/css/style.css" />
+    <link rel="icon" href="../../frontend/assets/images/tablette_chocolat1.ico" type="image/png" />
     <!-- Import Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>

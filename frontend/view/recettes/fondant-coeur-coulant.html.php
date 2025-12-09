@@ -7,11 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../../css/style.css" />
-    <link
-      rel="icon"
-      href="../../images/tablette_chocolat1.ico"
-      type="image/png"
-    />
+  <link rel="icon" href="../../frontend/assets/images/tablette_chocolat1.ico" type="image/png" />
     <style>
       body {
         background-color: #f7efe6;

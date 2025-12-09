@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../frontend/view/recettes/Sola/style/style.css" />
-    <link rel="icon" href="../../frontend/assets/images/tablette_chocolat1.ico" type="image/png" />
+  <link rel="icon" href="../../frontend/assets/images/tablette_chocolat1.ico" type="image/png" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>Recettes : Mousse au chocolat</title>
   </head>
