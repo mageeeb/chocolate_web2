@@ -118,63 +118,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener("DOMContentLoaded", () => {
     // Gestion du carrousel
-    // Desserts data
-    const desserts = [
-        {
-            image: "../../frontend/assets/images/macaronsAuChocolat.jpg",
-            title: "Macarons au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/truffesAuChocolat.jpg",
-            title: "Truffes au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/gateauPralineChocolatNoisette.jpg",
-            title: "Gâteau praliné chocolat noisette",
-        },
-        {
-            image: "../../frontend/assets/images/brownieAuChocolat.jpg",
-            title: "Brownie au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/cookiesAuxPepitesDeChocolat.jpg",
-            title: "Cookies aux pépites chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/coulantAuChocolat.jpg",
-            title: "Coulant au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/croissantAuChocolat.jpg",
-            title: "Croissant au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/fondantAuChocolat.jpg",
-            title: "Fondant au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/fraisesAuChocolat.jpg",
-            title: "Fraises au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/mousseAuChocolat.jpg",
-            title: "Mousse au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/souffleAuChocolat.jpg",
-            title: "Soufflé au chocolat",
-        },
-        {
-            image: "../../frontend/assets/images/tarteAuChocolat.jpg",
-            title: "Tarte au chocolat",
-        },
-    ];
+    // Vérifie si les données du carrousel sont injectées depuis PHP, sinon utilise les données statiques
+    const sourceData = typeof carouselData !== 'undefined' && carouselData.length > 0 
+        ? carouselData 
+        : [
+            { image: "../../frontend/assets/images/macaronsAuChocolat.jpg", title: "Macarons au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/truffesAuChocolat.jpg", title: "Truffes au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/gateauPralineChocolatNoisette.jpg", title: "Gâteau praliné chocolat noisette", url: "#" },
+            { image: "../../frontend/assets/images/brownieAuChocolat.jpg", title: "Brownie au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/cookiesAuxPepitesDeChocolat.jpg", title: "Cookies aux pépites chocolat", url: "#" },
+            { image: "../../frontend/assets/images/coulantAuChocolat.jpg", title: "Coulant au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/croissantAuChocolat.jpg", title: "Croissant au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/fondantAuChocolat.jpg", title: "Fondant au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/fraisesAuChocolat.jpg", title: "Fraises au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/mousseAuChocolat.jpg", title: "Mousse au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/souffleAuChocolat.jpg", title: "Soufflé au chocolat", url: "#" },
+            { image: "../../frontend/assets/images/tarteAuChocolat.jpg", title: "Tarte au chocolat", url: "#" },
+        ];
 
     // State
     let currentIndex = 0;
     let isAnimating = false;
     const visibleItems = 3;
-    const totalItems = desserts.length;
+    const totalItems = sourceData.length;
 
     // Auto-play configuration
     let autoPlayInterval = null;
@@ -188,12 +154,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
 
+    // S'assurer que les éléments du carrousel existent avant de continuer
+    if (!carouselTrack || !dotsContainer || !prevBtn || !nextBtn) {
+        return; // Ne pas exécuter le script du carrousel si les éléments ne sont pas sur la page
+    }
+
     // Get visible items based on current index
     function getVisibleItems() {
         const visible = [];
         for (let i = 0; i < visibleItems; i++) {
             const index = (currentIndex + i) % totalItems;
-            visible.push({ ...desserts[index], position: i });
+            visible.push({ ...sourceData[index], position: i });
         }
         return visible;
     }
@@ -205,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .map(
                 (item, idx) => `
         <div class="carousel-item position-${item.position} absolute w-full max-w-sm">
-            <div class="dessert-card relative cursor-pointer">
+            <a href="${item.url}" class="dessert-card relative cursor-pointer block">
                 <img
                     src="${item.image}"
                     alt="${item.title}"
@@ -217,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         ${item.title}
                     </h3>
                 </div>
-            </div>
+            </a>
         </div>
     `,
             )
@@ -226,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Render dots
     function renderDots() {
-        dotsContainer.innerHTML = desserts
+        dotsContainer.innerHTML = sourceData
             .map(
                 (_, idx) => `
         <button

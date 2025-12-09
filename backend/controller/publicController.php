@@ -5,6 +5,7 @@ use model\manager\CommentManager;
 use model\manager\RecipesManager;
 use model\manager\UserManager;
 use model\mapping\CommentMapping;
+use model\manager\LikesManager;
 
 if (isset($_GET['pg'])) {
     $pg = $_GET['pg'];
@@ -103,7 +104,7 @@ if (isset($_GET['pg'])) {
                     $rating = (int) $_POST['rating'];
                     $userId = (int) $_SESSION['users_id'];
 
-                    $likesManager = new \model\manager\LikesManager($connectPDO);
+                        $likesManager = new \model\manager\LikesManager($connectPDO);
 
                     // On vérifie si l'utilisateur a déjà voté pour cette recette
                     $existingLike = $likesManager->findOneByUserAndRecipe($userId, $recipeId);
@@ -219,15 +220,19 @@ if (isset($_GET['pg'])) {
             require_once "../../frontend/view/categories.html.php";
             break;
 
-
-
-        case 'about':
-            require_once "../../frontend/view/about.html.php";
-            break;
+            case 'about':
+                require_once "../../frontend/view/about.html.php";
+                break;
 
         default:
             require_once "../../frontend/view/404.html.php";
     }
 } else {
+    // Si 'pg' n'est pas défini, on charge la page d'accueil.
+    // On charge ici les données nécessaires pour la page d'accueil, comme les recettes pour le carrousel.
+    $recipesManager = new RecipesManager($connectPDO);
+    $carouselRecipes = $recipesManager->getAllRecipes();
+    $starRecipes = $recipesManager->getTopRatedRecipes(4); // Récupère 4 recettes stars
+    
     require_once "../../frontend/view/index.html.php";
 }

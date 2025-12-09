@@ -17,11 +17,17 @@ class RecipesMapping extends AbstractMapping
   protected ?string $recipe_img;
   protected ?int $recipe_cook_time;
   protected ?string $recipe_created_date;
+  protected ?int $users_users_id = null;
 
   // Champs des jointures
   protected ?UserMapping $user = null;
   protected ?array $comments = null;
   protected ?array $likesInfo = null;
+
+    public function getUsersUsersId(): ?int
+    {
+        return $this->users_users_id;
+    }
 
   public function getRecipesId(): ?int
   {

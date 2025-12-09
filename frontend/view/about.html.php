@@ -115,7 +115,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen bg-background">
+<body class="min-h-screen bg-[#f7efe6]">
     <!-- Navbar -->
     <?php include "../../frontend/view/components/_menu.html.php"; ?>
 

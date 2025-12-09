@@ -81,9 +81,11 @@
 
             <!-- Catégories -->
             <li>
-                <button data-section="contact-section"
-                    onclick="const contact = document.getElementById('contact-section'); if(contact) { contact.scrollIntoView({behavior:'smooth', block:'start'}); } else { window.location.href = './#contact-section'; }"
-                    class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors">
+                <button
+                        data-section="contact-section"
+                        onclick="document.getElementById('contact-section').scrollIntoView({behavior:'smooth', block:'start'})"
+                        class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors"
+                >
                     <!-- Icône Contact -->
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -118,6 +120,22 @@
                     <span class="hidden md:inline">About</span>
                 </button>
             </li>
+
+            <!-- Lien vers le panneau d'administration (visible uniquement par les admins) -->
+            <?php if (isset($_SESSION["user_role"]) && $_SESSION["user_role"] === 'admin'): ?>
+                <li>
+                    <button
+                            onclick="window.location.href = '?pg=admin'"
+                            class="relative flex items-center gap-2 px-3 py-2 rounded-xl transition-colors text-red-500"
+                    >
+                        <!-- Icône Admin -->
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                        <span class="hidden md:inline">Admin</span>
+                    </button>
+                </li>
+            <?php endif; ?>
 
             <!-- Connexion -->
             <li>

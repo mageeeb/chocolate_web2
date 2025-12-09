@@ -400,7 +400,6 @@ round($averageRating)
         </div>
     </div>
 </section>
-</section>
 
 <!-- Footer -->
 <?php include "../../frontend/view/components/_footer.html.php"; ?>

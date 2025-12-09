@@ -259,35 +259,116 @@
     <script>
         lucide.createIcons();
 
-        const recipesData = <?php
-        $recipesArray = [];
-        if (isset($recipes)) {
-            foreach ($recipes as $recipe) {
-                // Ensure image path is correct, handling potential nulls
-                $imgName = $recipe->getRecipeImg() ?? 'default.jpg';
-                $imgPath = "../../frontend/assets/images/" . $imgName;
-
-                $recipesArray[] = [
-                    'id' => $recipe->getRecipesId(),
-                    'line' => "?pg=recette&slug=" . $recipe->getRecipeSlug(),
-                    'category' => $recipe->getCategory() ?? 'all',
-                    'title' => $recipe->getRecipeTitle(),
-                    'image' => $imgPath,
-                    'time' => $recipe->getRecipeCookTime() . " min",
-                    'level' => $recipe->getLevel(),
-                    'servings' => $recipe->getServings(),
-                    'ingredients' => $recipe->getIngredients(),
-                    'desc' => $recipe->getRecipeDesc()
-                ];
-            }
+    const recipesData = [
+        {
+            id: 1,
+            line: "recettes/Reda/recetteReda1.html",
+            category: "gateau",
+            title: "Brownies au chocolat ultra fondants",
+            image: "../../frontend/assets/images/Brownies Hero.jpg",
+            time: "30-40 min",
+            level: "Facile",
+            servings: "4 pers",
+            ingredients: ["200g de chocolat noir (70% de cacao), haché", "175g de beurre non salé, coupé en cubes","3 gros œufs","275g de sucre en poudre","85g de farine tout usage","40g de cacao en poudre","1 c. à café d'extrait de vanille","½ c. à café de sel"],
+            desc: "Riche, décadent et incroyablement fondant — ces brownies sont le rêve de tout amateur de chocolat."
+        },
+        {
+            id: 2,
+            line: "recettes/Sola/Recette.html",
+            category: "mousse",
+            title: "Mousse au chocolat",
+            image: "../../frontend/assets/images/mousse_chocolat.jpg",
+            time: "20 min + froid",
+            level: "Facile",
+            servings: "4 pers",
+            ingredients: ["200 g de chocolat noir (70 % minimum)", "6 œufs frais", "1 pincée de sel", "(optionnel) un filet de café noir"],
+            desc: "Une mousse au chocolat, c'est un peu comme un bon design : minimaliste, mais chaque détail compte. Trois ingrédients, quelques gestes précis, et la magie opère."
+        },
+        {
+            id: 3,
+            line: "recettes/JM/gateauPralineChocolatNoisette.html",
+            category: "gateau",
+            title: "Gâteau praliné chocolat-noisette",
+            image: "../../frontend/assets/images/JM-recette/gateauPralineChocolatNoisette.jpg",
+            time: "30 min",
+            level: "Facile",
+            servings: "6 pers",
+            ingredients: ["200 g de chocolat noir", "150 g de pâte de noisette", "100 g de beurre", "100 g de sucre", "3 œufs", "50 g de farine"],
+            desc: "1. Préchauffez le four à 180°C.\n2. Faites fondre le chocolat et le beurre au bain-marie.\n3. Ajoutez la pâte de noisette et le sucre, puis mélangez bien.\n4. Incorporez les œufs un à un, puis la farine.\n5. Versez la pâte dans un moule beurré, saupoudrez de noisettes concassées et enfournez 25-30 minutes.\n6. Laissez refroidir avant de démouler."
+        },
+        {
+            id: 4,
+            line: "recettes/Sola/Recette2.html",
+            category: "gateau",
+            title: "Les brownies de grand-mère",
+            image: "../../frontend/assets/images/brownieAuChocolat.jpg",
+            time: "25 min",
+            level: "Moyen",
+            servings: "4 pers",
+            ingredients: ["200 g de chocolat noir", "120 g de beurre", "150 g de sucre", "100 g de farine", "2 oeufs", "1 c. à s. de cacao", "1 pincée de sel"],
+            desc: "1. Fonds le chocolat et le beurre. Laisse-les se mêler doucement.\n2. Ajoute le sucre et les œufs. Mélange sans fouetter.\n3. Incorpore la farine, le cacao et le sel.\n4. Ajoute le granulé (noisettes, pépites).\n5. Cuisson 20 à 25 minutes à 180°C.\nLe centre doit rester tendre, presque timide."
+        },
+        {
+            id: 5,
+            line: "recettes/Sam/recette1.html",
+            category: "mousse",
+            title: "Mousse au chocolat",
+            image: "../../frontend/assets/images/mousseAuChocolat.jpg",
+            time: "15 min",
+            level: "Facile",
+            servings: "6 pers",
+            ingredients: ["100 g de sucre en poudre\n500 g de mascarpone\nEnviron 30 biscuits à la cuillère\n100 g de chocolat noir de qualité (70%min)\n300 ml de café\nPour saupoudrer du cacao en poudre (petit gourmand..)"],
+            desc: "Ce Tiramisu au Chocolat est un pur délice de l'Italie. Il marie la douceur onctueuse d'une crème Mascarpone aérée et le moelleux de biscuits imbibés de café intense. Le tout est généreusement parsemé de copeaux de chocolat noir croquants et nappé d'une sauce chocolat fondante. Un dessert riche, crémeux et intensément cacaoté pour une satisfaction immédiate."
+        },
+        {
+            id: 6,
+            line: "recettes/Sam/recette2.html",
+            category: "gateau",
+            title: "Cannoli aux chocolat",
+            image: "../../frontend/assets/images/cannoli_chocolat.png",
+            time: "60 min",
+            level: "Moyen",
+            servings: "8-10 pers",
+            ingredients: [
+                "Pour les coques: 200g de farine tout usage",
+                "50g de sucre en poudre",
+                "50g de beurre fondu",
+                "1 œuf",
+                "1 pincée de sel",
+                "Huile de friture",
+                "Pour la garniture: 500g de ricotta fraîche",
+                "100g de sucre glace",
+                "100g de pépites de chocolat noir",
+                "Zeste d'une orange",
+                "1 c. à café d'extrait de vanille"
+            ],
+            desc: "Les cannoli sont une spécialité sicilienne emblématique : des coques de pâte fine, frites pour devenir parfaitement croustillantes, puis garnies d'une crème de ricotta douce et veloutée. Les pépites de chocolat apportent une touche gourmande, tandis que le zeste d'orange parfume le tout d'une fraîcheur méditerranéenne. Une alliance simple, authentique et irrésistible."
+        },
+        {
+            id: 7,
+            line: "recettes/Mykyta/recetteM1.html",
+            category: "mousse",
+            title: "Mousse au Chocolat au Lait Aérien",
+            image: "../../frontend/assets/images/Mousse au Chocolat au Lait Aérien.jpg",
+            time: "30 min",
+            level: "Facile",
+            servings: "4 pers",
+            ingredients: ["200g Chocolat au lait", "4 Œufs (blancs)", "3 Œufs (jaunes)", "40g Sucre", "30g Beurre", "200ml Crème liquide", "Pincée de sel"],
+            desc: "Une texture légère et mousseuse qui fond en bouche, avec une douceur équilibrée par la richesse du chocolat au lait. Parfait pour une fin de repas gourmande ou une pause sucrée."
+        },
+        {
+            id: 8,
+            line: "recettes/Mykyta/recetteM2.html",
+            category: "gateau",
+            title: "Fondant Cœur Coulant",
+            image: "../../frontend/assets/images/Fondant Coeur Coulant.webp",
+            time: "25 min",
+            level: "Moyen",
+            servings: "4 pers",
+            ingredients: ["100 g de chocolat noir (70%)", "100 g de beurre doux", "3 œufs moyens", "80 g de sucre en poudre", "50 g de farine T55"],
+            desc: "Le dessert qui fait fondre tout le monde. Un extérieur croustillant, un cœur ultra coulant… prêt en 25 minutes seulement."
         }
-    // Use flags to ensure valid JS string capability and handle special chars
-    $json = json_encode($recipesArray, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_THROW_ON_ERROR);
-    echo $json ?: '[]';
-    ?>;
-
-    console.log("Recipes loaded:", recipesData);
-    console.log("Count:", recipesData.length);
+    ];
 
         const grid = document.getElementById('recipes-grid');
         const modal = document.getElementById('recipe-modal');

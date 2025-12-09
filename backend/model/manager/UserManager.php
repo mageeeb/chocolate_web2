@@ -141,4 +141,24 @@ class UserManager implements ManagerInterface, UserInterface
             return false;
         }
     }
+
+    public function findAll(): array
+    {
+        $sql = "SELECT * FROM users ORDER BY users_id ASC";
+        $stmt = $this->connect->prepare($sql);
+        try {
+            $stmt->execute();
+            $usersData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->closeCursor();
+
+            $listUsers = [];
+            foreach ($usersData as $data) {
+                $listUsers[] = new UserMapping($data);
+            }
+            return $listUsers;
+        } catch (Exception $e) {
+            echo "Erreur lors de la récupération des utilisateurs : " . $e->getMessage();
+            return [];
+        }
+    }
 }

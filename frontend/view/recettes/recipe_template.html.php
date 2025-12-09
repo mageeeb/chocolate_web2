@@ -20,8 +20,8 @@
     ></script>
 </head>
 <body class="recette-sam-2">
-<!-- Flèche -->
-<a href="?pg=recette&slug=cannoli-au-chocolat" class="arrow-nav right">
+<!-- Flèche pour navigation, à adapter ou retirer si non pertinent pour une page générée -->
+<a href="#" class="arrow-nav right">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -82,7 +82,7 @@
         <!-- Image -->
         <div class="md:col-span-3 lg:col-span-2 relative">
             <img
-                src="../../frontend/assets/images/<?= htmlspecialchars($recette->getRecipeImg()) ?>"
+                src="../../frontend/assets/images/<?= htmlspecialchars($recette->getRecipeImg() ?? 'default.jpg') ?>"
                 alt="<?= htmlspecialchars($recette->getRecipeTitle()) ?>"
                 class="mx-auto ps-5 md:ps-0 w-full max-w-[500px] sm:pt-0 md:pt-10 lg:pt-0 my-[50px] md:my-0 my-0"
             />
@@ -128,7 +128,7 @@
                 <div id="rating-section" data-recipe-id="<?= $recipeId ?>" class="flex items-center gap-1">
                     <i data-lucide="star" class="w-5 h-5"></i>
                     <span id="rating-average"><?= number_format($averageRating, 1) ?></span>/ 5.0
-                    (<span id="rating-count"><?= $ratingCount ?></span>)
+                    (<span><?= $ratingCount ?></span>)
                     <div id="star-rating" class="flex ml-2">
                         <?php for ($i = 1; $i <= 5; $i++): ?>
                             <svg class="w-5 h-5 cursor-pointer star" data-rating="<?= $i ?>" fill="<?= $i <= round($averageRating) ? '#facc15' : 'currentColor' ?>" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -144,34 +144,24 @@
             >
                 Ingrédients
             </h2>
-            <!-- Liste ingrédients -->
+            <!-- Liste ingrédients (à modifier manuellement ou via une DB si le projet évolue) -->
             <ul
                 class="list-[square] list-inside md:text-sm lg:text-base text-[#7a3c18] mt-3"
             >
-                <li><span class="font-bold">4</span> Oeufs</li>
-                <li><span class="font-bold">100 g</span> de sucre en poudre</li>
-                <li><span class="font-bold">500 g</span> de mascarpone</li>
-                <li>
-                    <span class="font-bold">Environ 30</span> biscuits à la cuillère
-                </li>
-                <li>
-                    <span class="font-bold">100 g</span> de chocolat noir de qualité
-                    (70%min)
-                </li>
-                <li><span class="font-bold">300 ml</span> de café</li>
-                <li>
-                    <span class="font-bold">Pour saupoudrer</span> du cacao en poudre
-                    (petit gourmand..)
-                </li>
+                <!-- Exemple d'ingrédients, à remplacer par la logique de récupération si possible -->
+                <li><span class="font-bold">Quantité</span> Ingrédient 1</li>
+                <li><span class="font-bold">Quantité</span> Ingrédient 2</li>
+                <li><span class="font-bold">Quantité</span> Ingrédient 3</li>
             </ul>
         </div>
     </section>
 
-    <!-- Slide ingrédients -->
+    <!-- Slide ingrédients (optionnel, à retirer si non pertinent) -->
     <div
         class="marquee-container w-full overflow-hidden border-y-2 border-y-[#7a3c18]/90 shadow-md py-4 bg-white/5 backdrop-blur-extra-light md:mt-6 lg:mt-0 mb-10"
     >
         <div class="animate-marquee flex w-[300%] lg:w-[200%]">
+            <!-- Répéter les divs d'ingrédients ici si nécessaire, ou retirer -->
             <div
                 class="w-1/2 flex flex-shrink-0 items-center justify-around gap-x-0.5 sm:gap-x-1 md:gap-x-4 lg:gap-x-8 xl:gap-x-12"
             >
@@ -185,69 +175,6 @@
                         Oeufs
                     </p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/sucre.png"
-                        alt="Sucre en poudre"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Sucre en poudre
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/mascarpone.png"
-                        alt="Mascarpone"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Mascarpone
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/biscuit_cuillere.png"
-                        alt="Biscuit à la cuillère"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Biscuit à la cuillère
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/chocolat_noir.png"
-                        alt="Chocolat noir"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Chocolat noir
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/cafe.png"
-                        alt="Café"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Café
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/chocolat_poudre.png"
-                        alt="Cacao en poudre"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Cacao en poudre
-                    </p>
-                </div>
-                <div
-                    class="h-6 sm:h-8 md:h-12 lg:h-16 xl:h-20 w-px bg-gray-400"
-                ></div>
             </div>
             <div
                 class="w-1/2 flex flex-shrink-0 items-center justify-around gap-x-0.5 sm:gap-x-1 md:gap-x-4 lg:gap-x-8 xl:gap-x-12"
@@ -262,69 +189,6 @@
                         Oeufs
                     </p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/sucre.png"
-                        alt="Sucre en poudre"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Sucre en poudre
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/mascarpone.png"
-                        alt="Mascarpone"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Mascarpone
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/biscuit_cuillere.png"
-                        alt="Biscuit à la cuillère"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Biscuit à la cuillère
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/chocolat_noir.png"
-                        alt="Chocolat noir"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Chocolat noir
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/cafe.png"
-                        alt="Café"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Café
-                    </p>
-                </div>
-                <div class="flex flex-col items-center">
-                    <img
-                        src="../../frontend/assets/images/chocolat_poudre.png"
-                        alt="Cacao en poudre"
-                        class="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-                    />
-                    <p class="mt-2 text-center text-[0.5rem] sm:text-xs md:text-sm">
-                        Cacao en poudre
-                    </p>
-                </div>
-                <div
-                    class="h-6 sm:h-8 md:h-12 lg:h-16 xl:h-20 w-px bg-gray-400"
-                ></div>
             </div>
         </div>
     </div>
@@ -344,30 +208,18 @@
             <div class="pr-5 relative z-10">
                 <p class="mb-3">
                     <span class="text-[#4d2c16] text-3xl font-bold">1 </span>
-                    <strong>Préparation du café et du chocolat</strong> : Faites
-                    couler le café et laissez-le refroidir. Ajoutez l'alcool si
-                    désiré. Faites fondre 80 g de chocolat noir et laissez-le tiédir.
+                    <!-- Étape 1 -->
+                    Description de l'étape 1.
                 </p>
                 <p class="mb-3">
                     <span class="text-[#4d2c16] text-3xl font-bold">2 </span>
-                    <strong>Préparation de la crème</strong> : Dans un grand bol,
-                    mélangez les jaunes d'œufs avec le sucre jusqu'à ce que le mélange
-                    blanchisse et soit mousseux. Ajoutez le Mascarpone et mélangez
-                    doucement jusqu'à obtenir une crème lisse. Incorporez le chocolat
-                    fondu tiède à la crème au Mascarpone. Dans un autre bol, montez
-                    les blancs d'œufs en neige ferme. Incorporez-les délicatement à la
-                    crème au Mascarpone et au chocolat, en soulevant la masse avec une
-                    spatule.
+                    <!-- Étape 2 -->
+                    Description de l'étape 2.
                 </p>
                 <p>
                     <span class="text-[#4d2c16] text-3xl font-bold">3 </span>
-                    <strong>Montage du Tiramisu</strong> : Trempez rapidement les
-                    biscuits à la cuillère dans le café froid (il faut les tremper
-                    juste assez pour qu'ils s'imbibent, sans qu'ils se désagrègent).
-                    Disposez une première couche de biscuits dans le fond de votre
-                    plat ou de vos verres. Recouvrez d'une couche généreuse de crème
-                    au chocolat et Mascarpone. Répétez l'opération : une couche de
-                    biscuits, puis le reste de la crème.
+                    <!-- Étape 3 -->
+                    Description de l'étape 3.
                 </p>
             </div>
 
@@ -375,16 +227,11 @@
             <div class="pr-5 relative z-10">
                 <p class="mb-20">
                     <span class="text-[#4d2c16] text-3xl font-bold">4 </span>
-                    <strong>Finitions et Repos</strong> : Couvrez et placez au
-                    réfrigérateur pendant au moins 4 heures (idéalement une nuit) pour
-                    que le tiramisu soit bien ferme et que les saveurs se développent.
-                    Juste avant de servir, saupoudrez la surface de cacao en poudre
-                    non sucré à travers une passoire fine. Pour l'effet "gourmand" de
-                    l'image, ajoutez quelques copeaux de chocolat et un filet de sauce
-                    chocolat fondue, et terminez par une petite feuille de menthe !
+                    <!-- Étape 4 -->
+                    Description de l'étape 4.
                 </p>
                 <p class="ps-10 text-3xl text-[#4d2c16] font-bold pb-5">
-                    È PRONTO ! BUON APPETITO !
+                    BON APPÉTIT !
                 </p>
             </div>
 
@@ -409,18 +256,15 @@
         </div>
     </section>
 
-    <!-- Astouce -->
+    <!-- Astouce (optionnel, à retirer si non pertinent) -->
     <section class="astouce text-center my-10">
         <h1
             class="mb-2 md:mb-1 text-2xl text-[#4d2c16] inline-block bg-yellow-400 px-2 rounded"
         >
-            Astouce
+            Astuce
         </h1>
         <p class="text-[#7a3c18] font-medium px-4 md:px-24">
-            Le chocolat fondu doit être complètement froid avant d'intégrer la
-            crème (très important !). Et pour la quantité... Assurez-vous d'en
-            mettre suffisamment pour que votre dentiste vous envoie une carte de
-            vœux !
+            Une astuce pour cette recette.
         </p>
     </section>
 
@@ -476,71 +320,76 @@
 <!-- Footer -->
 <?php include "../../frontend/view/components/_footer.html.php"; ?>
 
-<script src="../../frontend/assets/js/script.js"></script>
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // Initialisation des icônes Lucide
+        lucide.createIcons();
+
+        // Logique de notation (étoiles) - peut être retirée si non pertinente ou adaptée
         const starRatingContainer = document.getElementById('star-rating');
         const stars = starRatingContainer ? starRatingContainer.querySelectorAll('.star') : [];
         const recipeId = document.getElementById('rating-section')?.dataset.recipeId;
         const ratingAverageSpan = document.getElementById('rating-average');
         const ratingCountSpan = document.getElementById('rating-count');
 
-        if (!starRatingContainer || !recipeId) {
-            console.warn('Star rating container or recipe ID not found. Skipping rating functionality.');
-            return;
+        if (starRatingContainer && recipeId) {
+            const updateStars = (average) => {
+                stars.forEach(star => {
+                    const rating = parseInt(star.dataset.rating);
+                    if (rating <= Math.round(average)) {
+                        star.setAttribute('fill', '#facc15');
+                    } else {
+                        star.setAttribute('fill', 'currentColor');
+                    }
+                });
+            };
+            // Mise à jour initiale des étoiles basée sur la moyenne actuelle
+            updateStars(parseFloat(ratingAverageSpan?.textContent || '0'));
+
+
+            stars.forEach(star => {
+                star.addEventListener('click', async (event) => {
+                    const rating = parseInt(event.currentTarget.dataset.rating);
+
+                    const formData = new FormData();
+                    formData.append('recipe_id', recipeId);
+                    formData.append('rating', rating);
+
+                    try {
+                        const response = await fetch('?pg=like-recipe', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        const data = await response.json();
+
+                        if (data.success) {
+                            if (ratingAverageSpan) ratingAverageSpan.textContent = parseFloat(data.new_average).toFixed(1);
+                            if (ratingCountSpan) ratingCountSpan.textContent = data.new_count;
+                            updateStars(data.new_average);
+                        } else {
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        console.error('Error submitting rating:', error);
+                        alert('Une erreur est survenue lors de la soumission de votre note.');
+                    }
+                });
+            });
         }
 
-        const updateStars = (average) => {
-            stars.forEach(star => {
-                const rating = parseInt(star.dataset.rating);
-                if (rating <= Math.round(average)) {
-                    star.setAttribute('fill', '#facc15');
-                } else {
-                    star.setAttribute('fill', 'currentColor');
-                }
+        // Animation de la flèche de navigation (si conservée)
+        const arrowNavRight = document.querySelector('.arrow-nav.right');
+        if (arrowNavRight) {
+            arrowNavRight.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.href;
+                document.body.classList.add('page-turn-right');
+                setTimeout(function() {
+                    window.location = href;
+                }, 900); // Match animation duration
             });
-        };
-
-        stars.forEach(star => {
-            star.addEventListener('click', async (event) => {
-                const rating = parseInt(event.currentTarget.dataset.rating);
-
-                const formData = new FormData();
-                formData.append('recipe_id', recipeId);
-                formData.append('rating', rating);
-
-                try {
-                    const response = await fetch('?pg=like-recipe', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    const data = await response.json();
-
-                    if (data.success) {
-                        if (ratingAverageSpan) ratingAverageSpan.textContent = parseFloat(data.new_average).toFixed(1);
-                        if (ratingCountSpan) ratingCountSpan.textContent = data.new_count;
-                        updateStars(data.new_average);
-                    } else {
-                        alert(data.message);
-                    }
-                } catch (error) {
-                    console.error('Error submitting rating:', error);
-                    alert('Une erreur est survenue lors de la soumission de votre note.');
-                }
-            });
-        });
-    });
-
-    document.querySelector('.arrow-nav.right').addEventListener('click', function(e) {
-        e.preventDefault();
-        const href = this.href;
-        document.body.classList.add('page-turn-right');
-        setTimeout(function() {
-            window.location = href;
-        }, 900); // Match animation duration
+        }
     });
 </script>
 </body>
 </html>
-

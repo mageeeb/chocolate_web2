@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connexion – Chocolat Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../../frontend/assets/css/style.css" />
     <link rel="icon" href="../assets/images/tablette_chocolat1.ico" type="image/png" />
 </head>
 <body>
