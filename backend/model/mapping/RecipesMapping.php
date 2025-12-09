@@ -23,26 +23,32 @@ class RecipesMapping extends AbstractMapping
   protected ?UserMapping $user = null;
   protected ?array $comments = null;
   protected ?array $likesInfo = null;
+  public ?string $average_rating = null;
 
-    public function getUsersUsersId(): ?int
-    {
-        return $this->users_users_id;
-    }
+  public function getAverageRating(): ?string
+  {
+    return $this->average_rating;
+  }
+
+  public function getUsersUsersId(): ?int
+  {
+    return $this->users_users_id;
+  }
 
   public function getRecipesId(): ?int
   {
     return $this->recipes_id;
   }
-  
-  public function getLikesInfo(): ?array
-    {
-        return $this->likesInfo;
-    }
 
-    public function setLikesInfo(?array $likesInfo): void
-    {
-        $this->likesInfo = $likesInfo;
-    }
+  public function getLikesInfo(): ?array
+  {
+    return $this->likesInfo;
+  }
+
+  public function setLikesInfo(?array $likesInfo): void
+  {
+    $this->likesInfo = $likesInfo;
+  }
 
 
   public function setRecipesId(?int $recipes_id): void
@@ -147,23 +153,85 @@ class RecipesMapping extends AbstractMapping
     $this->recipe_created_date = $date;
   }
 
-    public function getUser(): ?UserMapping
-    {
-        return $this->user;
-    }
+  public function getUser(): ?UserMapping
+  {
+    return $this->user;
+  }
 
-    public function setUser(?UserMapping $user): void
-    {
-        $this->user = $user;
-    }
+  public function setUser(?UserMapping $user): void
+  {
+    $this->user = $user;
+  }
 
-    public function getComments(): ?array
-    {
-        return $this->comments;
-    }
+  public function getComments(): ?array
+  {
+    return $this->comments;
+  }
 
-    public function setComments(?array $comments): void
-    {
-        $this->comments = $comments;
+  public function setComments(?array $comments): void
+  {
+    $this->comments = $comments;
+  }
+
+  // New properties for frontend view
+  protected ?string $category = "gateau"; // Default fallback
+  protected array $ingredients = [];
+  protected ?string $level = "Moyen"; // Default fallback
+  protected ?string $servings = "4 pers"; // Default fallback
+
+  public function getCategory(): ?string
+  {
+    return $this->category;
+  }
+
+  public function setCategorySlugs(?string $slugs): void
+  {
+    if ($slugs) {
+      $list = explode(',', $slugs);
+      $this->category = $list[0];
+      // Map specific slugs to expected frontend categories if needed
+      // e.g. if DB has 'gateaux', frontend expects 'gateau'
+      if (str_contains($this->category, 'gateau'))
+        $this->category = 'gateau';
+      elseif (str_contains($this->category, 'mousse'))
+        $this->category = 'mousse';
+      elseif (str_contains($this->category, 'boisson'))
+        $this->category = 'boisson';
+      elseif (str_contains($this->category, 'glace'))
+        $this->category = 'glace';
     }
+  }
+
+  public function getIngredients(): array
+  {
+    return $this->ingredients;
+  }
+
+  public function setIngredientsList(?string $list): void
+  {
+    if ($list) {
+      $this->ingredients = explode('|||', $list);
+    }
+  }
+
+  public function getLevel(): ?string
+  {
+    return $this->level;
+  }
+
+  public function setLevel(?string $level): void
+  {
+    // Try to find level in description or use default
+    $this->level = $level ?? "Moyen";
+  }
+
+  public function getServings(): ?string
+  {
+    return $this->servings;
+  }
+
+  public function setServings(?string $servings): void
+  {
+    $this->servings = $servings ?? "4 pers";
+  }
 }

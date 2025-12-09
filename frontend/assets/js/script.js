@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener('DOMContentLoaded', function () {
     const sections = Array.from(document.querySelectorAll('section[id]'));
+    if (sections.length === 0) return;
     const navButtons = Array.from(document.querySelectorAll('#navbar-img button[data-section]'));
 
     function activateSection(sectionId) {
@@ -148,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // DOM Elements
     const carouselTrack = document.getElementById("carousel-track");
+    if (!carouselTrack) return;
     const dotsContainer = document.getElementById("dots-container");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
